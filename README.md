@@ -18,6 +18,14 @@ that we face as a small student-run grocery store.
 - **Y is *List \<GroceryItem>***: It could be a variety of list of Grocery Items created as the manager would like with 
 different classification such as: Produce, CannedFood, Sauce, Vegetables, Dairy, etc.
 
-
+## User Stories:
+- As a user, I want to add GroceryItem to List\<GroceryItem> that fits their classification,
+- As a user, I want to remove GroceryItem to List\<GroceryItem> that fits their classification
+- As a user, I want to view the GroceryItems, and their feature in my List
+- As a user, I want to set a new price for the GroceryItem if needed
+- As a user, I want to add amount of the same GroceryItem
+- As a user, I want to reduce amount of the same GroceryItem
+- As a user, I want to see the expiry date of my GroceryItem.
+- As a user, I want to find the price to sell the product gain 5% of profit for the product that we sell.
 
   
