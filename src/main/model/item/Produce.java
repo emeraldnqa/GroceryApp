@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public class Produce extends StoreItem {
 
-    private static final LocalDate EXPIRY_DATE = LocalDate.of(+99999,12, 31);
     private LocalDate expiryDate;
 
     public Produce() {
@@ -15,13 +14,14 @@ public class Produce extends StoreItem {
 
     @Override
     public LocalDate setExpiryDate(int year, int month, int date) {
-        return this.expiryDate = EXPIRY_DATE;
+
+        return this.expiryDate = LocalDate.MAX;
     }
 
     // EFFECTS: Produce such as vegetable has no expiry date
     @Override
     public LocalDate getExpiryDate() {
-        return EXPIRY_DATE;
+        return expiryDate;
 
     }
 }

@@ -30,6 +30,7 @@ class StoreItemTest {
         produceItem.setUnit("kg");
         produceItem.setBrand("Kirkland");
         produceItem.setBoughtPrice(140.45);
+        produceItem.setExpiryDate(+999999999,12,31);
         return produceItem;
     }
 
@@ -59,6 +60,7 @@ class StoreItemTest {
         groceryItem.setUnit("packs");
         groceryItem.setInitialAmount(12);
         groceryItem.setBoughtPrice(24.50);
+        groceryItem.setExpiryDate(+999999999,12,31);
         return groceryItem;
     }
 
@@ -71,6 +73,7 @@ class StoreItemTest {
         assertEquals(140.45, produceItem.getBoughtPrice());
         assertEquals("kg",produceItem.getUnit());
         assertEquals(100,produceItem.getAmount());
+        assertEquals(LocalDate.MAX, produceItem.getExpiryDate());
 
     }
 
@@ -110,6 +113,7 @@ class StoreItemTest {
         assertEquals("packs",groceryItem.getUnit());
         assertEquals(12,groceryItem.getAmount());
         assertEquals(24.50,groceryItem.getBoughtPrice());
+        assertEquals(LocalDate.MAX, groceryItem.getExpiryDate());
     }
 
     @Test
@@ -143,6 +147,25 @@ class StoreItemTest {
         produceItem.increaseStock(10);
         assertEquals(110,produceItem.getAmount());
         assertEquals(140.45 / 100, produceItem.getPrice());
+    }
+
+    @Test
+    void testReduceStockOnce() {
+        produceItem = setProduceItem();
+        produceItem.reduceStock(50);
+        assertEquals(50, produceItem.getAmount());
+        assertEquals(140.45 / 100, produceItem.getPrice());
+    }
+
+    @Test
+    void testIncreaseAndDecreaseStockMultiples() {
+        StoreItem newProduceItem = setProduceItem();
+        newProduceItem.increaseStock(50);
+        newProduceItem.reduceStock(10);
+        newProduceItem.reduceStock(100);
+        newProduceItem.increaseStock(200);
+        assertEquals(240, newProduceItem.getAmount());
+        assertEquals(140.45 / 100, newProduceItem.getPrice());
     }
 
 

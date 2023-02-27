@@ -11,7 +11,6 @@ public abstract class StoreItem {
     private int amount;
     private static int initialAmount;
     private double boughtPrice;
-    private LocalDate expiryDate;
     private String unit;
 
 
@@ -36,7 +35,7 @@ public abstract class StoreItem {
 
     public int setInitialAmount(int amount) {
         initialAmount = amount;
-        this.amount = initialAmount;
+        this.amount = amount;
         return initialAmount;
     }
 
