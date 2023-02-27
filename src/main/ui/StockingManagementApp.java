@@ -187,13 +187,11 @@ public class StockingManagementApp {
     // EFFECTS: Remove item from chosen section
     private void removeCommand() {
         Section chosenSection = getSection();
-        System.out.println("Which item would you like to remove?");
-        System.out.println("\nName of product to remove: ");
-        String nameInput = input.next();
-        System.out.println("\nBrand of product: ");
-        String brandInput = input.next();
+        printItem(chosenSection);
+        System.out.println("Which item would you like to remove? Enter the item number");
+        int itemNo = input.nextInt();
         try {
-            chosenSection.removeItem(nameInput,brandInput);
+            chosenSection.removeItem(itemNo);
         } catch (ItemNotFoundException e) {
             System.out.println("Item does not available in the section. Please try again");
             removeCommand();

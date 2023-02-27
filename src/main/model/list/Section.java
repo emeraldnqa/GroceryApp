@@ -68,22 +68,17 @@ public class Section {
     }
 
 
-    // REQUIRES: name, and brand cannot be null
+    // REQUIRES: itemNo <= numOfItem
     // MODIFIES: this, numOfItem
     // EFFECT: Remove StoreItem from the Section. An  item cannot be removed if it's not in the list
     //         Reduce numOfItem by 1.
-    public List<StoreItem> removeItem(String name, String brand) throws ItemNotFoundException {
+    public List<StoreItem> removeItem(int itemNo) throws ItemNotFoundException {
         if (items.isEmpty()) {
             throw new IllegalStateException();
-        }
-        for (StoreItem i : items) {
-            if (i.getName().equals(name) && i.getBrand().equals(brand)) {
-                items.remove(i);
-                this.numOfItem -= 1;
-                return items;
-            } else {
-                throw new ItemNotFoundException();
-            }
+        } else {
+            StoreItem itemToRemove = items.get(itemNo);
+            items.remove(itemToRemove);
+            numOfItem--;
         }
         return items;
     }
@@ -103,6 +98,7 @@ public class Section {
             }
         }
     }
+
     // REQUIRES: itemNo >= 0, amountIncrease < item.amount
     // MODIFIES: this, StoreItem
     // EFFECT: Decrease an item stock in the section by given amount,

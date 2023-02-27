@@ -266,18 +266,12 @@ class StoreItemTest {
         meatItem = setMeatItem();
         produces.addItem(produceItem);
         produces.addItem(meatItem);
-        produces.removeItem(produceItem.getName(),produceItem.getBrand());
+        produces.removeItem(0);
         assertEquals(1,produces.getNumOfItem());
-        assertThrows(ItemNotFoundException.class,
-                () -> produces.removeItem(produceItem.getName(),produceItem.getBrand()),
-                "");
-        assertThrows(ItemNotFoundException.class,
-                () -> produces.removeItem(meatItem.getName(),produceItem.getBrand()),
-                "");
-        produces.removeItem(meatItem.getName(),meatItem.getBrand());
+        produces.removeItem(0);
         assertEquals(0,produces.getNumOfItem());
         assertThrows(IllegalStateException.class,
-                () -> produces.removeItem(meatItem.getName(),meatItem.getBrand()),
+                () -> produces.removeItem(1),
                 "");
     }
 
@@ -291,20 +285,9 @@ class StoreItemTest {
         produces.addItem(meatItem);
         produces.addItem(groceryItem);
         produces.addItem(dairyItem);
-        produces.removeItem(produceItem.getName(),produceItem.getBrand());
+        produces.removeItem(2);
         assertEquals(3, produces.getNumOfItem());
-        // Test to make sure that the item has actually been removed from the section
-        assertThrows(ItemNotFoundException.class,
-                () -> produces.removeItem(groceryItem.getName(),groceryItem.getBrand()),
-                "");
-        // Test if brand is the same but name is different
-        assertThrows(ItemNotFoundException.class,
-                () -> produces.removeItem("Radish",groceryItem.getBrand()),
-                "");
         // Test for completely different item and brand
-        assertThrows(ItemNotFoundException.class,
-                () -> produces.removeItem("Radish","Nestle"),
-                "");
 
 
 
