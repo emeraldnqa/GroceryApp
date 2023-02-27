@@ -1,10 +1,14 @@
 package model;
 
 import model.item.*;
+import model.list.Section;
+import model.list.exception.ItemAlreadyThereException;
+import model.list.exception.ItemNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +18,10 @@ class StoreItemTest {
     private StoreItem meatItem;
     private StoreItem dairyItem;
     private StoreItem groceryItem;
+    private Section produces;
+    private Section meats;
+    private Section dairies;
+    private Section groceries;
 
     @BeforeEach
     void runBefore() {
@@ -21,6 +29,10 @@ class StoreItemTest {
         meatItem = new Meat();
         dairyItem = new Dairy();
         groceryItem = new Grocery();
+        produces = new Section("Produce");
+        meats = new Section("Meat");
+        dairies = new Section("Dairy");
+        groceries = new Section("Grocery");
 
     }
 
@@ -166,6 +178,39 @@ class StoreItemTest {
         newProduceItem.increaseStock(200);
         assertEquals(240, newProduceItem.getAmount());
         assertEquals(140.45 / 100, newProduceItem.getPrice());
+    }
+
+    @Test
+    void testSectionConstructor() {
+        assertEquals("Produce", produces.getType());
+        assertEquals("Meat", meats.getType());
+        assertEquals("Grocery", groceries.getType());
+        assertEquals("Dairy", dairies.getType());
+    }
+
+    @Test
+    void testGetItems() throws ItemAlreadyThereException {
+        produceItem = setProduceItem();
+        meatItem = setMeatItem();
+        assertEquals(0,produces.getNumOfItem());
+        produces.addItem(produceItem);
+        produces.addItem(meatItem);
+        List<StoreItem> items = produces.getItems();
+        assertEquals(2,items.size());
+        assertEquals(2,produces.getNumOfItem());
+    }
+
+    @Test
+    void testAddItems() throws ItemAlreadyThereException {
+        produceItem = setProduceItem();
+        meatItem = setMeatItem();
+        produces.addItem(produceItem);
+        assertThrows(ItemAlreadyThereException.class,
+                () -> produces.addItem(produceItem),
+                "");
+        assertEquals(1,produces.getNumOfItem());
+        produces.addItem(meatItem);
+        assertEquals(2,produces.getNumOfItem());
     }
 
 
