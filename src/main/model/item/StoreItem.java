@@ -7,18 +7,18 @@ public abstract class StoreItem {
 
     private String name;
     private String brand;
-    private static double price;
-    private static int amount;
-    private static double boughtPrice;
+    private double price;
+    private int amount;
+    private static int initialAmount;
+    private double boughtPrice;
     private LocalDate expiryDate;
     private String unit;
 
 
 
     // EFFECTS: Construct a StoreItem, with the name, brand, expiry date, bought price, initial amounts bought, and
-    //         and unit not yet set
+    //          unit not yet set
     public StoreItem() {
-        this.price = 0;
 
     }
 
@@ -34,8 +34,10 @@ public abstract class StoreItem {
         return this.boughtPrice = boughtPrice;
     }
 
-    public int setInitialAmount(int initialAmount) {
-        return this.amount = initialAmount;
+    public int setInitialAmount(int amount) {
+        initialAmount = amount;
+        this.amount = initialAmount;
+        return initialAmount;
     }
 
     public String setUnit(String unit) {
@@ -54,7 +56,7 @@ public abstract class StoreItem {
 
     //EFFECT: return StoreItem price
     public double getPrice() {
-        return this.price = StoreItem.setPrice();
+        return this.price = setPrice();
     }
 
     //EFFECT: return StoreItem amount
@@ -75,9 +77,9 @@ public abstract class StoreItem {
 
     //REQUIRES: Amount > 0, boughtPrice > 0
     //MODIFIES: this
-    //EFFECT: set the price of an item price to amount/boughtPrice + (amount/boughtPrice)*PROFIT_PERCENT
-    private static double setPrice() {
-        price = boughtPrice / amount;
+    //EFFECT: set the price of an item price to amount/boughtPrice.
+    private double setPrice() {
+        price = boughtPrice / setInitialAmount(initialAmount);
         return price;
     }
 

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StockingManagementAppTest {
+class StoreItemTest {
 
     private StoreItem produceItem;
     private StoreItem meatItem;
@@ -33,6 +33,36 @@ class StockingManagementAppTest {
         return produceItem;
     }
 
+    StoreItem setMeatItem() {
+        meatItem.setName("bacon");
+        meatItem.setBrand("kirkland");
+        meatItem.setUnit("packs");
+        meatItem.setInitialAmount(50);
+        meatItem.setBoughtPrice(150.50);
+        meatItem.setExpiryDate(2023,12,31);
+        return meatItem;
+    }
+
+    StoreItem setDairyItem() {
+        dairyItem.setName("2% Milk");
+        dairyItem.setBrand("Nelson");
+        dairyItem.setUnit("cartons");
+        dairyItem.setInitialAmount(12);
+        dairyItem.setBoughtPrice(30.0);
+        dairyItem.setExpiryDate(2023,12,31);
+        return dairyItem;
+    }
+
+    StoreItem setGroceryItem() {
+        groceryItem.setName("paper towel");
+        groceryItem.setBrand("kirkland");
+        groceryItem.setUnit("packs");
+        groceryItem.setInitialAmount(12);
+        groceryItem.setBoughtPrice(24.50);
+        return groceryItem;
+    }
+
+
     @Test
     void testProduceItemGetters() {
         produceItem = setProduceItem();
@@ -52,15 +82,6 @@ class StockingManagementAppTest {
 
     }
 
-    StoreItem setMeatItem() {
-        meatItem.setName("bacon");
-        meatItem.setBrand("kirkland");
-        meatItem.setUnit("packs");
-        meatItem.setInitialAmount(50);
-        meatItem.setBoughtPrice(150.50);
-        meatItem.setExpiryDate(2023,12,31);
-        return meatItem;
-    }
 
     @Test
     void testMeatItemGetters() {
@@ -80,14 +101,6 @@ class StockingManagementAppTest {
         assertEquals(price, meatItem.getPrice());
     }
 
-    StoreItem setGroceryItem() {
-        groceryItem.setName("paper towel");
-        groceryItem.setBrand("kirkland");
-        groceryItem.setUnit("packs");
-        groceryItem.setInitialAmount(12);
-        groceryItem.setBoughtPrice(24.50);
-        return groceryItem;
-    }
 
     @Test
     void testGroceryItemGetters() {
@@ -106,17 +119,6 @@ class StockingManagementAppTest {
         assertEquals(price, groceryItem.getPrice());
     }
 
-
-    StoreItem setDairyItem() {
-        dairyItem.setName("2% Milk");
-        dairyItem.setBrand("Nelson");
-        dairyItem.setUnit("cartons");
-        dairyItem.setInitialAmount(12);
-        dairyItem.setBoughtPrice(30.0);
-        dairyItem.setExpiryDate(2023,12,31);
-        return dairyItem;
-    }
-
     @Test
     void testDairyItemGetters() {
         dairyItem = setDairyItem();
@@ -132,7 +134,15 @@ class StockingManagementAppTest {
     void testDairyItemGetPrice() {
         dairyItem = setDairyItem();
         double price = 30.0 / 12;
-        assertEquals(price, groceryItem.getPrice());
+        assertEquals(price, dairyItem.getPrice());
+    }
+
+    @Test
+    void testIncreaseStockOnce() {
+        produceItem = setProduceItem();
+        produceItem.increaseStock(10);
+        assertEquals(110,produceItem.getAmount());
+        assertEquals(140.45 / 100, produceItem.getPrice());
     }
 
 

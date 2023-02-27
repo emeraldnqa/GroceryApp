@@ -1,6 +1,5 @@
 package model.item;
 
-import com.sun.jdi.event.VMDeathEvent;
 
 import java.time.LocalDate;
 
