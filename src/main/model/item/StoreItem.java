@@ -2,7 +2,8 @@ package model.item;
 
 import java.time.LocalDate;
 
-// Represent a StoreItem having name, brand, price, isShelfStable, expiryDate
+// Represent a StoreItem having name, brand, price, the amount Bought, in what unit, amount change over tine,
+// and boughtPrice
 public abstract class StoreItem {
 
     private String name;
@@ -15,12 +16,13 @@ public abstract class StoreItem {
 
 
 
-    // EFFECTS: Construct a StoreItem, with the name, brand, expiry date, bought price, initial amounts bought, and
-    //          unit not yet set
+    // EFFECTS: Construct a StoreItem, with name, brand, price, the amount Bought, in what unit,
+    // amount change over tine, and boughtPrice. The field has not yet been set
     public StoreItem() {
 
     }
 
+    // EFFECTS:
     public String setName(String name) {
         return this.name = name;
     }

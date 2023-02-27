@@ -85,13 +85,13 @@ public class Section {
         if (items.isEmpty()) {
             throw new IllegalStateException();
         } else {
-                if (itemNo <= getNumOfItem()) {
-                    items.get(itemNo).increaseStock(amountIncrease);
-                } else {
-                    throw new ItemNotFoundException();
-                }
+            if (itemNo <= getNumOfItem()) {
+                items.get(itemNo).increaseStock(amountIncrease);
+            } else {
+                throw new ItemNotFoundException();
             }
         }
+    }
 
     public void reduceAmount(int itemNo, int amountIncrease) throws ItemNotFoundException {
         if (items.isEmpty()) {
@@ -102,8 +102,8 @@ public class Section {
             } else {
                 throw new ItemNotFoundException();
             }
-            }
         }
+    }
 }
 
 

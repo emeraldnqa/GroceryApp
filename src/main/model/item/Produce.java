@@ -12,6 +12,9 @@ public class Produce extends StoreItem {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Set the expiry date to the maximum date possible, since grocery item has undetermined
+    // expiry date.
     @Override
     public LocalDate setExpiryDate(int year, int month, int date) {
 
