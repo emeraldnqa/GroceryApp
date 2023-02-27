@@ -2,6 +2,7 @@ package model.item;
 
 import java.time.LocalDate;
 
+// Represent StoreItem qualified as Dairy product such as milk, cheese, yoghurt, etc.
 public class Dairy extends StoreItem {
 
     private LocalDate expiryDate;

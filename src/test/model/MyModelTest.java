@@ -282,7 +282,37 @@ class StoreItemTest {
     }
 
     @Test
-    void testAddAmount() throws ItemAlreadyThereException, ItemNotFoundException {
+    void testRemoveItemMultiple() throws ItemAlreadyThereException, ItemNotFoundException {
+        produceItem = setProduceItem();
+        meatItem = setMeatItem();
+        groceryItem = setGroceryItem();
+        dairyItem = setDairyItem();
+        produces.addItem(produceItem);
+        produces.addItem(meatItem);
+        produces.addItem(groceryItem);
+        produces.addItem(dairyItem);
+        produces.removeItem(produceItem.getName(),produceItem.getBrand());
+        assertEquals(3, produces.getNumOfItem());
+        // Test to make sure that the item has actually been removed from the section
+        assertThrows(ItemNotFoundException.class,
+                () -> produces.removeItem(groceryItem.getName(),groceryItem.getBrand()),
+                "");
+        // Test if brand is the same but name is different
+        assertThrows(ItemNotFoundException.class,
+                () -> produces.removeItem("Radish",groceryItem.getBrand()),
+                "");
+        // Test for completely different item and brand
+        assertThrows(ItemNotFoundException.class,
+                () -> produces.removeItem("Radish","Nestle"),
+                "");
+
+
+
+    }
+
+
+    @Test
+    void testAddAmount() throws ItemNotFoundException, ItemAlreadyThereException {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         groceryItem = setGroceryItem();
@@ -314,6 +344,24 @@ class StoreItemTest {
                 () -> produces.reduceAmount(5,200),
                 "");
 
+    }
+
+    @Test
+    void testAddAmountEmptySection() {
+        produceItem = setProduceItem();
+        assertThrows(IllegalStateException.class,
+                () -> produces.addAmount(0,100),
+                "");
+        assertEquals(0,produces.getNumOfItem());
+    }
+
+    @Test
+    void testReduceAmountEmptySection() {
+        produceItem = setProduceItem();
+        assertThrows(IllegalStateException.class,
+                () -> produces.reduceAmount(0,100),
+                "");
+        assertEquals(0,produces.getNumOfItem());
     }
 
 

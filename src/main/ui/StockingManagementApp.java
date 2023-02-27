@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import static model.list.Section.EXPIRY_DATE;
 
+// A grocery store stocking management app;
 public class StockingManagementApp {
     private Section produces;
     private Section meats;
@@ -25,6 +26,8 @@ public class StockingManagementApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
+    // REFERENCE: The structure for runApp() is inspired by TellerApp, an example provided in CPSC210
+    //            for this project
     private void runApp() {
         boolean runningCommand = true;
         String command = null;
@@ -52,7 +55,9 @@ public class StockingManagementApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: Create different sections in a grocery store.
+    // EFFECTS: Initializes different sections in a grocery store.
+    // REFERENCE: The structure for init() is inspired by TellerApp, an example provided in CPSC210
+    //            for this project
     private void init() {
         produces = new Section("Produce");
         meats = new Section("Meat");
@@ -65,6 +70,8 @@ public class StockingManagementApp {
     }
 
     // EFFECTS: display options for user
+    // REFERENCE: The structure for showMenu() is inspired by TellerApp, an example provided in CPSC210
+    //            for this project
     private void showMenu() {
         System.out.println("\nWelcome to your Grocery Management App. What would you like to do?:");
         System.out.println("\ta -> Add new item");
@@ -75,9 +82,11 @@ public class StockingManagementApp {
 
     }
 
-    // REQUIRES:
+    // REQUIRES: command cannot be null.
     // MODIFIES: this
     // EFFECTS: running user command
+    // REFERENCE: The structure for showMenu() is inspired by TellerApp, an example provided in CPSC210
+    //            for this project
     private void runCommand(String command) {
         switch (command) {
             case "a":
@@ -110,8 +119,8 @@ public class StockingManagementApp {
         System.out.println("\td -> dairy");
     }
 
-    // REQUIRES:
-    // EFFECT: Print out all the item in the item list
+    // REQUIRES: items that match the chosen Section
+    // EFFECT: Print out all the items in the Section
     private void printItem(Section items) {
         System.out.println("Section: " + items.getType());
         System.out.println("Number of item in section: " + items.getNumOfItem());
@@ -132,7 +141,7 @@ public class StockingManagementApp {
         }
     }
 
-    //REQUIRES:
+
     // EFFECT: Find the section that the customer want to print out
     private Section getSection() {
         sectionMenu();
@@ -157,6 +166,9 @@ public class StockingManagementApp {
         return createNewSection();
     }
 
+    // MODIFIES: this
+    // EFFECT: create a new section, with user inputting the type of section. If user choose not to
+    //         create a new section, quit the method
     private Section createNewSection() {
         System.out.println("Would you like to make a new section?(y/n)");
         String yesOrNo = input.next();
@@ -170,7 +182,7 @@ public class StockingManagementApp {
         return new Section(newSection);
     }
 
-    // REQUIRES:
+
     // MODIFIES: this
     // EFFECTS: Remove item from chosen section
     private void removeCommand() {
@@ -206,6 +218,8 @@ public class StockingManagementApp {
         }
     }
 
+    // REQUIRES: type can only be Produce, Grocery, Meat, or Dairy
+    // EFFECT: Create a new Item
     public StoreItem createItem(String type) throws WrongTypeException {
         switch (type) {
             case "Produce":
@@ -221,6 +235,9 @@ public class StockingManagementApp {
         }
     }
 
+    // REQUIRES: a valid item in StoreItem
+    // MODIFIES: StoreItem
+    // EFFECT: Enter all the information about the item
     private StoreItem setUpItem(Section items) throws WrongTypeException {
         StoreItem item = createItem(items.getType());
         System.out.println("Please add information about your new product below");
@@ -242,6 +259,8 @@ public class StockingManagementApp {
         return addItemData(item, name, brand, unit, boughtPrice, amount);
     }
 
+    // MODIFIES: StoreItem
+    // EFFECT: Set the user input about the item into the StoreItem object
     private StoreItem addItemData(StoreItem item, String name, String brand, String unit,
                                  double boughtPrice, int amount) {
         item.setName(name);
@@ -252,6 +271,8 @@ public class StockingManagementApp {
         return item;
     }
 
+    // MODIFIES: StoreItem
+    // EFFECT: Set the StoreItem expiryDate according to the item type
     private void setItemExpiryDate(StoreItem item) {
         System.out.println("Please enter the expiry date of the product");
         System.out.println("\nYear: ");
@@ -263,6 +284,8 @@ public class StockingManagementApp {
         item.setExpiryDate(year,month,date);
     }
 
+    // MODIFIES: Section
+    // EFFECT: User can choose to reduce/add stock amount from an item in the section
     private void addOrReduceAmount() {
         System.out.println("Which would you like to do? Add amount or reduce? (a/r)");
         String action = input.next();
@@ -279,6 +302,9 @@ public class StockingManagementApp {
         }
     }
 
+    // REQUIRES: sectionChosen can only be the sections that was initialized at the beginning
+    // MODIFIES: StoreItem
+    // EFFECT: increase a certain item stock by their index position, by a certain amount
     private void increaseAmount(Section sectionChosen) {
         System.out.println("\nEnter the number of the item that you would like to add: ");
         int itemNo = input.nextInt();
@@ -294,6 +320,9 @@ public class StockingManagementApp {
 
     }
 
+    // REQUIRES: sectionChosen can only be the sections that was initialized at the beginning
+    // MODIFIES: StoreItem
+    // EFFECT: Decrease a certain item stock by their index position, by a certain amount
     private void decreaseAmount(Section sectionChosen) throws ItemNotFoundException {
         System.out.println("Enter the number of the item that you would like to remove: ");
         int itemNo = input.nextInt();

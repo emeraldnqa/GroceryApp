@@ -2,6 +2,7 @@ package model.item;
 
 import java.time.LocalDate;
 
+//Represent StoreItem qualify as Meat, such as beef, pork, chicken, etc.
 public class Meat extends StoreItem {
 
     private LocalDate expiryDate;
