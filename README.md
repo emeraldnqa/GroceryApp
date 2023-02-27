@@ -26,6 +26,10 @@ different classification such as: Produce, CannedFood, Sauce, Vegetables, Dairy,
 - As a user, I want to reduce amount of the same GroceryItem
 - As a user, I want to see the expiry date of my GroceryItem.
 - As a user, I want to see the price to sell the product.
+- As a user, when I want to quit the program, I will be asked to save my items in different sections into a file.
+- As a user, while I am still using the program, I want to have the option to save my items to a file
+- As a user, when I open my program, I want to have an option to load my items from a file, or start a new file, 
+with no items
 
 
   
