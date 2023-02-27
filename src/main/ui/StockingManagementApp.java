@@ -1,6 +1,6 @@
 package ui;
 
-import model.item.StoreItem;
+import model.item.*;
 import model.list.Section;
 import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
@@ -206,8 +206,23 @@ public class StockingManagementApp {
         }
     }
 
+    public StoreItem createItem(String type) throws WrongTypeException {
+        switch (type) {
+            case "Produce":
+                return new Produce();
+            case "Grocery":
+                return new Grocery();
+            case "Meat":
+                return new Meat();
+            case "Dairy":
+                return new Dairy();
+            default:
+                throw new WrongTypeException();
+        }
+    }
+
     private StoreItem setUpItem(Section items) throws WrongTypeException {
-        StoreItem item = items.createItem(items.getType());
+        StoreItem item = createItem(items.getType());
         System.out.println("Please add information about your new product below");
         System.out.println("\nName: ");
         String name = input.next();

@@ -3,7 +3,6 @@ package model.list;
 import model.item.*;
 import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
-import model.list.exception.WrongTypeException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -62,20 +61,6 @@ public class Section {
         return items;
     }
 
-    public StoreItem createItem(String type) throws WrongTypeException {
-        switch (type) {
-            case "Produce":
-                return new Produce();
-            case "Grocery":
-                return new Grocery();
-            case "Meat":
-                return new Meat();
-            case "Dairy":
-                return new Dairy();
-            default:
-                throw new WrongTypeException();
-        }
-    }
 
     // REQUIRES: a valid store item
     // MODIFIES: this

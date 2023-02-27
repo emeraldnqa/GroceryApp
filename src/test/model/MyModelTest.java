@@ -211,6 +211,33 @@ class StoreItemTest {
         assertEquals(1,produces.getNumOfItem());
         produces.addItem(meatItem);
         assertEquals(2,produces.getNumOfItem());
+        StoreItem newItem = new Produce();
+        newItem.setName("Carrots");
+        newItem.setName("Other brand");
+        newItem.setInitialAmount(100);
+        newItem.setUnit("kg");
+        newItem.setBoughtPrice(140.45);
+        newItem.setExpiryDate(+999999999,12,31);
+        produces.addItem(newItem);
+        assertEquals(3,produces.getNumOfItem());
+    }
+
+    @Test
+    void testRemoveItems() throws ItemAlreadyThereException, ItemNotFoundException {
+        produceItem = setProduceItem();
+        meatItem = setMeatItem();
+        produces.addItem(produceItem);
+        produces.addItem(meatItem);
+        produces.removeItem(produceItem.getName(),produceItem.getBrand());
+        assertEquals(1,produces.getNumOfItem());
+        assertThrows(ItemNotFoundException.class,
+                () -> produces.removeItem(produceItem.getName(),produceItem.getBrand()),
+                "");
+        produces.removeItem(meatItem.getName(),meatItem.getBrand());
+        assertEquals(0,produces.getNumOfItem());
+        assertThrows(IllegalStateException.class,
+                () -> produces.removeItem(produceItem.getName(),produceItem.getBrand()),
+                "");
     }
 
 
