@@ -85,33 +85,30 @@ public class Section {
         if (items.isEmpty()) {
             throw new IllegalStateException();
         } else {
-            for (StoreItem item : items) {
-                if (getItems().indexOf(item) == itemNo) {
-                    item.increaseStock(amountIncrease);
+                if (itemNo <= getNumOfItem()) {
+                    items.get(itemNo).increaseStock(amountIncrease);
                 } else {
                     throw new ItemNotFoundException();
                 }
             }
         }
-    }
 
     public void reduceAmount(int itemNo, int amountIncrease) throws ItemNotFoundException {
         if (items.isEmpty()) {
             throw new IllegalStateException();
         } else {
-            for (StoreItem item : items) {
-                if (getItems().indexOf(item) == itemNo) {
-                    item.reduceStock(amountIncrease);
-                } else {
-                    throw new ItemNotFoundException();
-                }
+            if (itemNo <= getNumOfItem()) {
+                items.get(itemNo).reduceStock(amountIncrease);
+            } else {
+                throw new ItemNotFoundException();
+            }
             }
         }
-    }
-
-
-
-
-
 }
+
+
+
+
+
+
 

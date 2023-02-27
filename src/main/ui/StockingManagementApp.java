@@ -279,7 +279,7 @@ public class StockingManagementApp {
         }
     }
 
-    private void increaseAmount(Section sectionChosen) throws ItemNotFoundException {
+    private void increaseAmount(Section sectionChosen) {
         System.out.println("\nEnter the number of the item that you would like to add: ");
         int itemNo = input.nextInt();
         System.out.println("\nEnter the amount that you would like to add to the item: ");
@@ -288,6 +288,8 @@ public class StockingManagementApp {
             sectionChosen.addAmount(itemNo,amountIncrease);
         } catch (IllegalStateException e) {
             System.out.println("The current section is empty");
+        } catch (ItemNotFoundException e) {
+            System.out.println("Item not found, please try again");
         }
 
     }
@@ -301,6 +303,8 @@ public class StockingManagementApp {
             sectionChosen.reduceAmount(itemNo, amountDecrease);
         } catch (IllegalStateException e) {
             System.out.println("The current section is empty");
+        } catch (ItemNotFoundException e) {
+            System.out.println("Item not found, please try again");
         }
 
     }
