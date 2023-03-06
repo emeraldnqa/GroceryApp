@@ -5,9 +5,8 @@ import java.time.LocalDate;
 // Represent StoreItem qualified as Dairy product such as milk, cheese, yoghurt, etc.
 public class Dairy extends StoreItem {
 
-    private LocalDate expiryDate;
-
     public Dairy() {
+
         super();
     }
 
@@ -16,12 +15,7 @@ public class Dairy extends StoreItem {
     // EFFECTS: Set the expiry date
     @Override
     public LocalDate setExpiryDate(int year, int month, int date) {
-        return this.expiryDate = LocalDate.of(year, month, date);
+        return expiryDate = LocalDate.of(year, month, date);
     }
 
-    // EFFECTS: Return the expiry date of the dairy item
-    @Override
-    public LocalDate getExpiryDate() {
-        return expiryDate;
-    }
 }

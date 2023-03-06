@@ -19,13 +19,16 @@ that we face as a small student-run grocery store.
 different classification such as: Produce, CannedFood, Sauce, Vegetables, Dairy, etc.
 
 ## User Stories:
-- As a user, I want to add StoreItem to List\<StoreItem> that fits their classification,
+- **As a user, I want to add StoreItem to List\<StoreItem> that fits their classification,**
 - As a user, I want to remove StoreItem to List\<StoreItem> that fits their classification
-- As a user, I want to view the StoreItems, and their feature in my List
-- As a user, I want to add amount of the same GroceryItem
-- As a user, I want to reduce amount of the same GroceryItem
+- **As a user, I want to view the StoreItems, and their feature in my List**
+- **As a user, I want to add amount of the same GroceryItem**
+- **As a user, I want to reduce amount of the same GroceryItem**
 - As a user, I want to see the expiry date of my GroceryItem.
-- As a user, I want to see the price to sell the product.
+- **As a user, I want to see the price to sell the product.**
+- As a user, I want to save all the items that have been added to each section, while using, 
+and before closing the program
+- As a user, I want to have the option of either start out blank, or load the data that I have saved before.
 
 
   

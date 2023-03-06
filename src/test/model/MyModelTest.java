@@ -38,7 +38,7 @@ class StoreItemTest {
 
     StoreItem setProduceItem() {
         produceItem.setName("Carrots");
-        produceItem.setInitialAmount(100);
+        produceItem.setAmount(100);
         produceItem.setUnit("kg");
         produceItem.setBrand("Kirkland");
         produceItem.setBoughtPrice(140.45);
@@ -50,7 +50,7 @@ class StoreItemTest {
         meatItem.setName("bacon");
         meatItem.setBrand("kirkland");
         meatItem.setUnit("packs");
-        meatItem.setInitialAmount(50);
+        meatItem.setAmount(50);
         meatItem.setBoughtPrice(150.50);
         meatItem.setExpiryDate(2023,12,31);
         return meatItem;
@@ -60,7 +60,7 @@ class StoreItemTest {
         dairyItem.setName("2% Milk");
         dairyItem.setBrand("Nelson");
         dairyItem.setUnit("cartons");
-        dairyItem.setInitialAmount(12);
+        dairyItem.setAmount(12);
         dairyItem.setBoughtPrice(30.0);
         dairyItem.setExpiryDate(2023,12,31);
         return dairyItem;
@@ -70,7 +70,7 @@ class StoreItemTest {
         groceryItem.setName("paper towel");
         groceryItem.setBrand("kirkland");
         groceryItem.setUnit("packs");
-        groceryItem.setInitialAmount(12);
+        groceryItem.setAmount(12);
         groceryItem.setBoughtPrice(24.50);
         groceryItem.setExpiryDate(+999999999,12,31);
         return groceryItem;
@@ -214,7 +214,7 @@ class StoreItemTest {
         StoreItem newItem = new Produce();
         newItem.setName("Carrots");
         newItem.setName("Other brand");
-        newItem.setInitialAmount(100);
+        newItem.setAmount(100);
         newItem.setUnit("kg");
         newItem.setBoughtPrice(140.45);
         newItem.setExpiryDate(+999999999,12,31);
@@ -232,7 +232,7 @@ class StoreItemTest {
         StoreItem newItem = new Produce();
         newItem.setName("Carrots");
         newItem.setName("Other brand");
-        newItem.setInitialAmount(100);
+        newItem.setAmount(100);
         newItem.setUnit("kg");
         newItem.setBoughtPrice(200.45);
         newItem.setExpiryDate(+999999999,12,31);
@@ -251,7 +251,7 @@ class StoreItemTest {
         StoreItem newItem = new Produce();
         newItem.setName("Carrots");
         newItem.setName("Kirkland");
-        newItem.setInitialAmount(100);
+        newItem.setAmount(100);
         newItem.setUnit("kg");
         newItem.setBoughtPrice(200.45);
         newItem.setExpiryDate(+999999999,12,31);
