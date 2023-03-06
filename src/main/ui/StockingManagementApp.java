@@ -265,7 +265,7 @@ public class StockingManagementApp {
         item.setBrand(brand);
         item.setUnit(unit);
         item.setBoughtPrice(boughtPrice);
-        item.setInitialAmount(amount);
+        item.setAmount(amount);
         return item;
     }
 
@@ -303,13 +303,13 @@ public class StockingManagementApp {
     // REQUIRES: sectionChosen can only be the sections that was initialized at the beginning
     // MODIFIES: StoreItem
     // EFFECT: increase a certain item stock by their index position, by a certain amount
-    private void increaseAmount(Section sectionChosen) {
+    private void increaseAmount(Section section) {
         System.out.println("\nEnter the number of the item that you would like to add: ");
         int itemNo = input.nextInt();
         System.out.println("\nEnter the amount that you would like to add to the item: ");
         int amountIncrease = input.nextInt();
         try {
-            sectionChosen.addAmount(itemNo,amountIncrease);
+            section.addAmount(itemNo,amountIncrease);
         } catch (IllegalStateException e) {
             System.out.println("The current section is empty");
         } catch (ItemNotFoundException e) {
@@ -321,13 +321,13 @@ public class StockingManagementApp {
     // REQUIRES: sectionChosen can only be the sections that was initialized at the beginning
     // MODIFIES: StoreItem
     // EFFECT: Decrease a certain item stock by their index position, by a certain amount
-    private void decreaseAmount(Section sectionChosen) throws ItemNotFoundException {
+    private void decreaseAmount(Section section) throws ItemNotFoundException {
         System.out.println("Enter the number of the item that you would like to remove: ");
         int itemNo = input.nextInt();
         System.out.println("\nEnter the amount that you would like to decrease to the item: ");
         int amountDecrease = input.nextInt();
         try {
-            sectionChosen.reduceAmount(itemNo, amountDecrease);
+            section.reduceAmount(itemNo, amountDecrease);
         } catch (IllegalStateException e) {
             System.out.println("The current section is empty");
         } catch (ItemNotFoundException e) {

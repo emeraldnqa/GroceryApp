@@ -13,6 +13,7 @@ public abstract class StoreItem {
     private static int initialAmount;
     private double boughtPrice;
     private String unit;
+    LocalDate expiryDate;
 
 
 
@@ -35,10 +36,10 @@ public abstract class StoreItem {
         return this.boughtPrice = boughtPrice;
     }
 
-    public int setInitialAmount(int amount) {
-        initialAmount = amount;
+    public int setAmount(int amount) {
         this.amount = amount;
-        return initialAmount;
+        this.initialAmount = amount;
+        return this.amount;
     }
 
     public String setUnit(String unit) {
@@ -80,7 +81,7 @@ public abstract class StoreItem {
     //MODIFIES: this
     //EFFECT: set the price of an item price to amount/boughtPrice.
     private double setPrice() {
-        price = boughtPrice / setInitialAmount(initialAmount);
+        price = boughtPrice / initialAmount;
         return price;
     }
 
@@ -100,12 +101,19 @@ public abstract class StoreItem {
         return this.amount;
     }
 
+    protected LocalDate defaultExpiryDate() {
+        return expiryDate = LocalDate.MAX;
+
+    }
+
     // REQUIRES: Year >= 2023 or current year, 0 < Month < 13, 0 < Date < 31
     // MODIFIES: this
     // EFFECTS: Return the expiryDate of certain item
     public abstract LocalDate setExpiryDate(int year, int month, int date);
 
-    public abstract LocalDate getExpiryDate();
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
 
 
 
