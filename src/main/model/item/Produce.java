@@ -6,8 +6,6 @@ import java.time.LocalDate;
 // Represent StoreItem that is qualified as Produce such as apple, bananas, vegetables, etc.
 public class Produce extends StoreItem {
 
-    private LocalDate expiryDate;
-
     public Produce() {
         super();
 
@@ -19,13 +17,7 @@ public class Produce extends StoreItem {
     @Override
     public LocalDate setExpiryDate(int year, int month, int date) {
 
-        return this.expiryDate = LocalDate.MAX;
+        return defaultExpiryDate();
     }
 
-    // EFFECTS: Produce such as vegetable has no expiry date
-    @Override
-    public LocalDate getExpiryDate() {
-        return expiryDate;
-
-    }
 }
