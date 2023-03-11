@@ -3,6 +3,10 @@ package model.list;
 import model.item.*;
 import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.JsonReader;
+import persistance.Writable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +15,7 @@ import java.util.List;
 // Represent a section in a grocery store. The section has its own type, which adhere to four type that we
 // have: produce, grocery, meat, dairy. Each section will also have numOfItem to represent the number of
 // different product in the section
-public class Section {
+public class Section implements Writable {
 
     private String type;
     private List<StoreItem> items;
@@ -114,6 +118,23 @@ public class Section {
                 throw new ItemNotFoundException();
             }
         }
+    }
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Type",type);
+        json.put("items",itemsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray itemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (StoreItem i : items) {
+            jsonArray.put(i.toJson());
+        }
+        return jsonArray;
     }
 }
 

@@ -1,0 +1,29 @@
+{"Sections": [
+    {
+        "Type": "Produce",
+        "items": [{
+            "date": 31,
+            "amount": 150,
+            "unit": "kg",
+            "month": 12,
+            "boughtPrice": 120.2,
+            "year": 999999999,
+            "price": 1.202,
+            "initialAmount": 100,
+            "name": "carrot",
+            "brand": "no name"
+        }]
+    },
+    {
+        "Type": "Meat",
+        "items": []
+    },
+    {
+        "Type": "Dairy",
+        "items": []
+    },
+    {
+        "Type": "Grocery",
+        "items": []
+    }
+]}

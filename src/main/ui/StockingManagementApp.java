@@ -5,19 +5,26 @@ import model.list.Section;
 import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
 import model.list.exception.WrongTypeException;
+import persistance.JsonReader;
+import persistance.JsonWriter;
 
-import java.util.List;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.*;
 
 import static model.list.Section.EXPIRY_DATE;
 
 // A grocery store stocking management app;
 public class StockingManagementApp {
+    private static final String JSON_STORE = "./data/sections.json";
     private Section produces;
     private Section meats;
     private Section dairies;
     private Section groceries;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     private Scanner input;
+    private List<Section> sections;
 
     //EFFECTS: run the Grocery Stocking Management application
     protected StockingManagementApp() {
@@ -65,7 +72,13 @@ public class StockingManagementApp {
         groceries = new Section("Grocery");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        sections = new ArrayList<>();
+        sections.add(produces);
+        sections.add(meats);
+        sections.add(dairies);
+        sections.add(groceries);
 
     }
 
@@ -78,6 +91,8 @@ public class StockingManagementApp {
         System.out.println("\tr -> Remove item");
         System.out.println("\tv -> View item");
         System.out.println("\ta/r -> Add or Reduce amount in individual item");
+        System.out.println("\ts -> Save sections");
+        System.out.println("\tl -> Load sections");
         System.out.println("\tq -> Quit");
 
     }
@@ -87,25 +102,59 @@ public class StockingManagementApp {
     // EFFECTS: running user command
     // REFERENCE: The structure for showMenu() is inspired by TellerApp, an example provided in CPSC210
     //            for this project
-    private void runCommand(String command) {
+    private void runCommand(String command) throws WrongTypeException, IOException, ItemAlreadyThereException {
         switch (command) {
             case "a":
                 addCommand();
                 break;
-            case "r": {
+            case "r":
                 removeCommand();
                 break;
-            }
-            case "v": {
+            case "v":
                 getSection();
                 break;
-            }
             case "a/r":
                 addOrReduceAmount();
+                break;
+            case "s":
+                saveSections();
+                break;
+            case "l":
+                loadSections();
                 break;
             default:
                 System.out.println("There's no such option");
                 break;
+        }
+    }
+
+    // EFFECTS: Save sections to file
+    private void saveSections() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(sections);
+            jsonWriter.close();
+            System.out.println("Saved " + produces.getType() + "to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: Load Sections to file
+    private void loadSections() throws WrongTypeException, IOException, ItemAlreadyThereException {
+        try {
+             sections = jsonReader.read();
+             produces = sections.get(0);
+             meats = sections.get(1);
+             dairies = sections.get(2);
+             groceries = sections.get(3);
+            System.out.println("Loaded Different sections from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (WrongTypeException e) {
+            throw new RuntimeException(e);
+        } catch (ItemAlreadyThereException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -266,6 +315,8 @@ public class StockingManagementApp {
         item.setUnit(unit);
         item.setBoughtPrice(boughtPrice);
         item.setAmount(amount);
+        item.setInitialAmount(amount);
+        item.setPrice();
         return item;
     }
 

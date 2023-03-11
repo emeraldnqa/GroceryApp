@@ -1,16 +1,19 @@
 package model.item;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 import java.time.LocalDate;
 
 // Represent a StoreItem having name, brand, price, the amount Bought, in what unit, amount change over tine,
 // and boughtPrice
-public abstract class StoreItem {
+public abstract class StoreItem implements Writable {
 
     private String name;
     private String brand;
     private double price;
     private int amount;
-    private static int initialAmount;
+    private int initialAmount;
     private double boughtPrice;
     private String unit;
     LocalDate expiryDate;
@@ -38,8 +41,12 @@ public abstract class StoreItem {
 
     public int setAmount(int amount) {
         this.amount = amount;
-        this.initialAmount = amount;
         return this.amount;
+    }
+
+    public int setInitialAmount(int amount) {
+        this.initialAmount = amount;
+        return this.initialAmount;
     }
 
     public String setUnit(String unit) {
@@ -58,7 +65,7 @@ public abstract class StoreItem {
 
     //EFFECT: return StoreItem price
     public double getPrice() {
-        return this.price = setPrice();
+        return this.price;
     }
 
     //EFFECT: return StoreItem amount
@@ -80,9 +87,9 @@ public abstract class StoreItem {
     //REQUIRES: Amount > 0, boughtPrice > 0
     //MODIFIES: this
     //EFFECT: set the price of an item price to amount/boughtPrice.
-    private double setPrice() {
-        price = boughtPrice / initialAmount;
-        return price;
+    public double setPrice() {
+        this.price = this.boughtPrice / this.initialAmount;
+        return this.price;
     }
 
     //REQUIRES: 0 < reduceAmount <= initialAmount
@@ -113,6 +120,22 @@ public abstract class StoreItem {
 
     public LocalDate getExpiryDate() {
         return expiryDate;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("brand",brand);
+        json.put("price",price);
+        json.put("amount",amount);
+        json.put("initialAmount",this.initialAmount);
+        json.put("boughtPrice",boughtPrice);
+        json.put("unit",unit);
+        json.put("year",expiryDate.getYear());
+        json.put("month",expiryDate.getMonthValue());
+        json.put("date",expiryDate.getDayOfMonth());
+        return json;
     }
 
 
