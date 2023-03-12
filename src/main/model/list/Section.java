@@ -52,9 +52,9 @@ public class Section implements Writable {
     // MODIFIES: this, numOfItem
     // EFFECT: Add StoreItem into Section.
     public List<StoreItem> addItem(StoreItem newItem) {
-            items.add(newItem);
-            this.numOfItem++;
-            return items;
+        items.add(newItem);
+        this.numOfItem++;
+        return items;
     }
 
 
@@ -106,6 +106,7 @@ public class Section implements Writable {
             }
         }
     }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

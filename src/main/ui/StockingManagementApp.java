@@ -143,11 +143,11 @@ public class StockingManagementApp {
     // EFFECTS: Load Sections to file
     private void loadSections() throws WrongTypeException, IOException, ItemAlreadyThereException {
         try {
-             sections = jsonReader.read();
-             produces = sections.get(0);
-             meats = sections.get(1);
-             dairies = sections.get(2);
-             groceries = sections.get(3);
+            sections = jsonReader.read();
+            produces = sections.get(0);
+            meats = sections.get(1);
+            dairies = sections.get(2);
+            groceries = sections.get(3);
             System.out.println("Loaded Different sections from" + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
