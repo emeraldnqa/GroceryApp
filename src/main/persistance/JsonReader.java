@@ -89,30 +89,30 @@ public class JsonReader {
         int date = jsonObject.getInt("date");
 
         String type = section.getType();
-        StoreItem item = createStoreItem(name, brand,amount,boughtPrice,unit,type);
+        StoreItem item = createStoreItem(name, brand,amount,boughtPrice,unit,type,initialAmount);
         item.setExpiryDate(year,month,date);
         section.addItem(item);
     }
 
     // EFFECTS: Create a new Grocery
     private StoreItem createStoreItem(String name, String brand, int amount,
-                                        double boughtPrice, String unit, String type) {
+                                      double boughtPrice, String unit, String type, int initialAmount) {
         switch (type) {
             case "Produce":
                 StoreItem produce = new Produce();
-                setField(produce, name, brand, amount, boughtPrice, unit);
+                setField(produce, name, brand, amount, boughtPrice, unit, initialAmount);
                 return produce;
             case "Grocery":
                 StoreItem grocery = new Grocery();
-                setField(grocery, name, brand, amount, boughtPrice, unit);
+                setField(grocery, name, brand, amount, boughtPrice, unit, initialAmount);
                 return grocery;
             case "Meat":
                 StoreItem meat = new Meat();
-                setField(meat, name, brand, amount, boughtPrice, unit);
+                setField(meat, name, brand, amount, boughtPrice, unit, initialAmount);
                 return meat;
             case "Dairy":
                 StoreItem dairy = new Dairy();
-                setField(dairy, name, brand, amount, boughtPrice, unit);
+                setField(dairy, name, brand, amount, boughtPrice, unit, initialAmount);
                 return dairy;
             default:
                 return null;
@@ -122,12 +122,14 @@ public class JsonReader {
 
     // EFFECTS: Set StoreItem field
     private void setField(StoreItem item, String name, String brand, int amount,
-                          double boughtPrice, String unit) {
+                          double boughtPrice, String unit, int initialAmount) {
         item.setName(name);
         item.setBrand(brand);
         item.setAmount(amount);
+        item.setInitialAmount(initialAmount);
         item.setUnit(unit);
         item.setBoughtPrice(boughtPrice);
+        item.setPrice();
     }
 
 

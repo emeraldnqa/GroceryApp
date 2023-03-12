@@ -50,26 +50,13 @@ public class Section implements Writable {
 
     // REQUIRES: a valid store item
     // MODIFIES: this, numOfItem
-    // EFFECT: Add StoreItem into Section. An item cannot be added, if the name, the price, and the brand is the same.
-    //         increase numOfItem in Section by 1.
-    public List<StoreItem> addItem(StoreItem newItem) throws ItemAlreadyThereException {
-        if (items.isEmpty()) {
+    // EFFECT: Add StoreItem into Section.
+    public List<StoreItem> addItem(StoreItem newItem) {
             items.add(newItem);
             this.numOfItem++;
-        } else {
-            for (StoreItem item : items) {
-                if (newItem.getName().equals(item.getName()) && newItem.getBrand().equals(item.getBrand())
-                        && newItem.getPrice() == item.getPrice()) {
-                    throw new ItemAlreadyThereException();
-                } else {
-                    items.add(newItem);
-                    this.numOfItem++;
-                    return items;
-                }
-            }
-        }
-        return items;
+            return items;
     }
+
 
 
     // REQUIRES: itemNo <= numOfItem

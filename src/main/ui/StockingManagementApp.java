@@ -259,9 +259,6 @@ public class StockingManagementApp {
             chosenSection.addItem(newItem);
         } catch (WrongTypeException e) {
             System.out.println("\nWe currently don't have that section available in store. Please choose again");
-        } catch (ItemAlreadyThereException e) {
-            System.out.println("The Item is already being added. Please try again");
-            addCommand();
         }
     }
 

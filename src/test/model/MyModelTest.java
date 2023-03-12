@@ -39,10 +39,12 @@ class StoreItemTest {
     StoreItem setProduceItem() {
         produceItem.setName("Carrots");
         produceItem.setAmount(100);
+        produceItem.setInitialAmount(100);
         produceItem.setUnit("kg");
         produceItem.setBrand("Kirkland");
         produceItem.setBoughtPrice(140.45);
         produceItem.setExpiryDate(+999999999,12,31);
+        produceItem.setPrice();
         return produceItem;
     }
 
@@ -51,8 +53,10 @@ class StoreItemTest {
         meatItem.setBrand("kirkland");
         meatItem.setUnit("packs");
         meatItem.setAmount(50);
+        meatItem.setInitialAmount(50);
         meatItem.setBoughtPrice(150.50);
         meatItem.setExpiryDate(2023,12,31);
+        meatItem.setPrice();
         return meatItem;
     }
 
@@ -61,8 +65,10 @@ class StoreItemTest {
         dairyItem.setBrand("Nelson");
         dairyItem.setUnit("cartons");
         dairyItem.setAmount(12);
+        dairyItem.setInitialAmount(12);
         dairyItem.setBoughtPrice(30.0);
         dairyItem.setExpiryDate(2023,12,31);
+        dairyItem.setPrice();
         return dairyItem;
     }
 
@@ -71,8 +77,10 @@ class StoreItemTest {
         groceryItem.setBrand("kirkland");
         groceryItem.setUnit("packs");
         groceryItem.setAmount(12);
+        groceryItem.setInitialAmount(12);
         groceryItem.setBoughtPrice(24.50);
         groceryItem.setExpiryDate(+999999999,12,31);
+        groceryItem.setPrice();
         return groceryItem;
     }
 
@@ -201,13 +209,10 @@ class StoreItemTest {
     }
 
     @Test
-    void testAddItems() throws ItemAlreadyThereException {
+    void testAddItems() {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         produces.addItem(produceItem);
-        assertThrows(ItemAlreadyThereException.class,
-                () -> produces.addItem(produceItem),
-                "");
         assertEquals(1,produces.getNumOfItem());
         produces.addItem(meatItem);
         assertEquals(2,produces.getNumOfItem());
@@ -218,44 +223,6 @@ class StoreItemTest {
         newItem.setUnit("kg");
         newItem.setBoughtPrice(140.45);
         newItem.setExpiryDate(+999999999,12,31);
-        produces.addItem(newItem);
-        assertEquals(3,produces.getNumOfItem());
-    }
-
-    @Test
-    void testAddItemsBrandAndPriceNotMatch() throws ItemAlreadyThereException {
-        produceItem = setProduceItem();
-        meatItem = setMeatItem();
-        produces.addItem(produceItem);
-        produces.addItem(meatItem);
-        assertEquals(2,produces.getNumOfItem());
-        StoreItem newItem = new Produce();
-        newItem.setName("Carrots");
-        newItem.setName("Other brand");
-        newItem.setAmount(100);
-        newItem.setUnit("kg");
-        newItem.setBoughtPrice(200.45);
-        newItem.setExpiryDate(+999999999,12,31);
-        assertEquals(200.45/100,newItem.getPrice());
-        produces.addItem(newItem);
-        assertEquals(3,produces.getNumOfItem());
-    }
-
-    @Test
-    void testAddItemsBrandAndNameMatch() throws ItemAlreadyThereException{
-        produceItem = setProduceItem();
-        meatItem = setMeatItem();
-        produces.addItem(produceItem);
-        produces.addItem(meatItem);
-        assertEquals(2,produces.getNumOfItem());
-        StoreItem newItem = new Produce();
-        newItem.setName("Carrots");
-        newItem.setName("Kirkland");
-        newItem.setAmount(100);
-        newItem.setUnit("kg");
-        newItem.setBoughtPrice(200.45);
-        newItem.setExpiryDate(+999999999,12,31);
-        assertEquals(200.45/100,newItem.getPrice());
         produces.addItem(newItem);
         assertEquals(3,produces.getNumOfItem());
     }
