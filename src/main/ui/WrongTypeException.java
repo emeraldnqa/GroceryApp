@@ -1,4 +1,4 @@
-package model.list.exception;
+package ui;
 
 public class WrongTypeException extends Exception {
 }

@@ -3,7 +3,6 @@ package ui;
 import model.item.*;
 import model.list.Section;
 import model.list.exception.ItemNotFoundException;
-import model.list.exception.WrongTypeException;
 import persistance.JsonReader;
 import persistance.JsonWriter;
 
