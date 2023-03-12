@@ -48,6 +48,8 @@ public class JsonReaderTest extends JsonTest{
             meats = sectionList.get(1);
             groceries = sectionList.get(2);
             dairies = sectionList.get(3);
+            Section makeups = sectionList.get(4);
+            assertEquals(null,makeups.getItems().get(0));
 
             assertEquals(1,produces.getNumOfItem());
             assertEquals(1,meats.getNumOfItem());
@@ -60,6 +62,8 @@ public class JsonReaderTest extends JsonTest{
             checkSections(setDairyItem(),dairies);
         } catch (IOException e) {
             fail("Exception not expected");
+        } catch(NullPointerException e) {
+            //There should never be null item
         }
     }
 

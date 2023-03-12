@@ -58,5 +58,20 @@
       "name": "2% Milk",
       "brand": "Nelson"
     }]
+  },
+  {
+    "Type": "Makeup",
+    "items": [{
+      "date": 31;
+      "amount": 12,
+      "unit": "boxes",
+      "month": 12,
+      "boughtPrice": 150.50,
+      "year": 2024,
+      "price": 10,
+      "initialAmount": 12,
+      "name": "lip",
+      "brand": "Maybelline"
+    }]
   }
 ]}

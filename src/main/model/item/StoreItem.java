@@ -116,7 +116,7 @@ public abstract class StoreItem implements Writable {
     // REQUIRES: Year >= 2023 or current year, 0 < Month < 13, 0 < Date < 31
     // MODIFIES: this
     // EFFECTS: Return the expiryDate of certain item
-    public abstract LocalDate setExpiryDate(int year, int month, int date);
+    public abstract LocalDate setExpiryDate(int year, int month, int date) ;
 
     public LocalDate getExpiryDate() {
         return expiryDate;
