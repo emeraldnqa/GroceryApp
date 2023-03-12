@@ -90,8 +90,8 @@ public class StockingManagementApp {
         System.out.println("\tv -> View item");
         System.out.println("\ta/r -> Add or Reduce amount in individual item");
         System.out.println("\ts -> Save sections");
-        System.out.println("\tl -> Load sections");
-        System.out.println("\tq -> Quit");
+        System.out.println("\tl -> Load sections (Data will be overwritten if you don't load)");
+        System.out.println("\tq -> Quit (Remember to save your data before quit!)");
 
     }
 
