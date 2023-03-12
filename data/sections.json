@@ -1,29 +1,88 @@
 {"Sections": [
     {
         "Type": "Produce",
+        "items": [
+            {
+                "date": 31,
+                "amount": 100,
+                "unit": "kg",
+                "month": 12,
+                "boughtPrice": 150.5,
+                "year": 999999999,
+                "price": 1.505,
+                "initialAmount": 100,
+                "name": "carrot",
+                "brand": "no name"
+            },
+            {
+                "date": 31,
+                "amount": 50,
+                "unit": "kg",
+                "month": 12,
+                "boughtPrice": 130.5,
+                "year": 999999999,
+                "price": 2.61,
+                "initialAmount": 50,
+                "name": "apple",
+                "brand": "kirkland"
+            },
+            {
+                "date": 31,
+                "amount": 50,
+                "unit": "kg",
+                "month": 12,
+                "boughtPrice": 125.5,
+                "year": 999999999,
+                "price": 2.51,
+                "initialAmount": 50,
+                "name": "oranges",
+                "brand": "no name"
+            }
+        ]
+    },
+    {
+        "Type": "Meat",
         "items": [{
             "date": 31,
-            "amount": 150,
+            "amount": 50,
             "unit": "kg",
             "month": 12,
-            "boughtPrice": 120.2,
-            "year": 999999999,
-            "price": 1.202,
-            "initialAmount": 100,
-            "name": "carrot",
+            "boughtPrice": 150.3,
+            "year": 2023,
+            "price": 3.0060000000000002,
+            "initialAmount": 50,
+            "name": "minced pork",
             "brand": "no name"
         }]
     },
     {
-        "Type": "Meat",
-        "items": []
-    },
-    {
         "Type": "Dairy",
-        "items": []
+        "items": [{
+            "date": 31,
+            "amount": 30,
+            "unit": "box",
+            "month": 12,
+            "boughtPrice": 130.45,
+            "year": 2023,
+            "price": 4.348333333333333,
+            "initialAmount": 30,
+            "name": "cheese",
+            "brand": "no name"
+        }]
     },
     {
         "Type": "Grocery",
-        "items": []
+        "items": [{
+            "date": 31,
+            "amount": 20,
+            "unit": "rolls",
+            "month": 12,
+            "boughtPrice": 120.2,
+            "year": 999999999,
+            "price": 6.01,
+            "initialAmount": 20,
+            "name": "paper",
+            "brand": "kirkland"
+        }]
     }
 ]}

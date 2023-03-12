@@ -1,0 +1,62 @@
+{"Sections": [
+  {
+    "Type": "Produce",
+    "items": [{
+      "date": 31,
+      "amount": 100,
+      "unit": "kg",
+      "month": 12,
+      "boughtPrice": 140.45,
+      "year": 999999999,
+      "price": 1.4044999999999999,
+      "initialAmount": 100,
+      "name": "Carrots",
+      "brand": "Kirkland"
+    }]
+  },
+  {
+    "Type": "Meat",
+    "items": [{
+      "date": 31,
+      "amount": 50,
+      "unit": "packs",
+      "month": 12,
+      "boughtPrice": 150.5,
+      "year": 2023,
+      "price": 3.01,
+      "initialAmount": 50,
+      "name": "bacon",
+      "brand": "kirkland"
+    }]
+  },
+  {
+    "Type": "Grocery",
+    "items": [{
+      "date": 31,
+      "amount": 12,
+      "unit": "packs",
+      "month": 12,
+      "boughtPrice": 24.5,
+      "year": 999999999,
+      "price": 2.0416666666666665,
+      "initialAmount": 12,
+      "name": "paper towel",
+      "brand": "kirkland"
+    }]
+  },
+  {
+    "Type": "Dairy",
+    "items": [{
+      "date": 31,
+      "amount": 12,
+      "unit": "cartons",
+      "month": 12,
+      "boughtPrice": 30,
+      "year": 2023,
+      "price": 2.5,
+      "initialAmount": 12,
+      "name": "2% Milk",
+      "brand": "Nelson"
+    }]
+  }
+]}

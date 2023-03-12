@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a writer that write sections from JSON data stored in file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -37,6 +38,8 @@ public class JsonWriter {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Write each section to JSONObjet, and added into JSONArray
     private JSONArray sectionsToJsonArray(List<Section> sections) {
         JSONArray jsonArray = new JSONArray();
         for (Section s: sections) {

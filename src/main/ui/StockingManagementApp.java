@@ -2,7 +2,6 @@ package ui;
 
 import model.item.*;
 import model.list.Section;
-import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
 import model.list.exception.WrongTypeException;
 import persistance.JsonReader;
@@ -102,7 +101,7 @@ public class StockingManagementApp {
     // EFFECTS: running user command
     // REFERENCE: The structure for showMenu() is inspired by TellerApp, an example provided in CPSC210
     //            for this project
-    private void runCommand(String command) throws WrongTypeException, IOException, ItemAlreadyThereException {
+    private void runCommand(String command) throws IOException {
         switch (command) {
             case "a":
                 addCommand();
@@ -141,7 +140,7 @@ public class StockingManagementApp {
     }
 
     // EFFECTS: Load Sections to file
-    private void loadSections() throws WrongTypeException, IOException, ItemAlreadyThereException {
+    private void loadSections() {
         try {
             sections = jsonReader.read();
             produces = sections.get(0);
@@ -151,10 +150,6 @@ public class StockingManagementApp {
             System.out.println("Loaded Different sections from" + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
-        } catch (WrongTypeException e) {
-            throw new RuntimeException(e);
-        } catch (ItemAlreadyThereException e) {
-            throw new RuntimeException(e);
         }
     }
 

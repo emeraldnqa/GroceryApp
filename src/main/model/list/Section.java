@@ -1,11 +1,9 @@
 package model.list;
 
 import model.item.*;
-import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistance.JsonReader;
 import persistance.Writable;
 
 import java.time.LocalDate;

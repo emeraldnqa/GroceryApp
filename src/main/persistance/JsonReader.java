@@ -2,8 +2,6 @@ package persistance;
 
 import model.item.*;
 import model.list.Section;
-import model.list.exception.ItemAlreadyThereException;
-import model.list.exception.WrongTypeException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,7 +24,7 @@ public class JsonReader {
 
     // EFFECTS: Read section from file, and returns it;
     // throws IOException if there's an error reading the file
-    public List<Section> read() throws IOException, ItemAlreadyThereException, WrongTypeException {
+    public List<Section> read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseSections(jsonObject);
@@ -44,7 +42,7 @@ public class JsonReader {
     }
 
     // EFFECTS: Parse Section from JSONObject and returns it
-    private List<Section> parseSections(JSONObject jsonObject) throws ItemAlreadyThereException, WrongTypeException {
+    private List<Section> parseSections(JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Sections");
         List<Section> sections = new ArrayList<>();
         for (Object json: jsonArray) {
@@ -57,7 +55,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parse individual section from jsonObject to section
-    private Section parseSection(JSONObject jsonObject) throws WrongTypeException, ItemAlreadyThereException {
+    private Section parseSection(JSONObject jsonObject) {
         String type = jsonObject.getString("Type");
         Section section = new Section(type);
         addStoreItems(section,jsonObject);
@@ -66,8 +64,7 @@ public class JsonReader {
 
     // MODIFIES: section
     // EFFECTS: parse StoreItems from JSONObject and add them to section
-    private void addStoreItems(Section section, JSONObject jsonObject) throws ItemAlreadyThereException,
-             WrongTypeException {
+    private void addStoreItems(Section section, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("items");
         for (Object json : jsonArray) {
             JSONObject nextItem = (JSONObject) json;
@@ -95,7 +92,7 @@ public class JsonReader {
         section.addItem(item);
     }
 
-    // EFFECTS: Create a new Grocery
+    // EFFECTS: Create a new StoreItem
     private StoreItem createStoreItem(String name, String brand, int amount,
                                       double boughtPrice, String unit, String type, int initialAmount) {
         switch (type) {

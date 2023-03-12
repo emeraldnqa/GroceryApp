@@ -2,7 +2,6 @@ package model;
 
 import model.item.*;
 import model.list.Section;
-import model.list.exception.ItemAlreadyThereException;
 import model.list.exception.ItemNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -197,7 +196,7 @@ class StoreItemTest {
     }
 
     @Test
-    void testGetItems() throws ItemAlreadyThereException {
+    void testGetItems() {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         assertEquals(0,produces.getNumOfItem());
@@ -228,7 +227,7 @@ class StoreItemTest {
     }
 
     @Test
-    void testRemoveItems() throws ItemAlreadyThereException, ItemNotFoundException {
+    void testRemoveItems() throws ItemNotFoundException {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         produces.addItem(produceItem);
@@ -243,7 +242,7 @@ class StoreItemTest {
     }
 
     @Test
-    void testRemoveItemMultiple() throws ItemAlreadyThereException, ItemNotFoundException {
+    void testRemoveItemMultiple() throws ItemNotFoundException {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         groceryItem = setGroceryItem();
@@ -262,7 +261,7 @@ class StoreItemTest {
 
 
     @Test
-    void testAddAmount() throws ItemNotFoundException, ItemAlreadyThereException {
+    void testAddAmount() throws ItemNotFoundException{
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         groceryItem = setGroceryItem();
@@ -279,7 +278,7 @@ class StoreItemTest {
     }
 
     @Test
-    void testReduceAmount() throws ItemAlreadyThereException, ItemNotFoundException {
+    void testReduceAmount() throws ItemNotFoundException {
         produceItem = setProduceItem();
         meatItem = setMeatItem();
         groceryItem = setGroceryItem();
