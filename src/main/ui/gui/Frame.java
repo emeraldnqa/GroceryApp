@@ -2,11 +2,11 @@ package ui.gui;
 
 import javax.swing.*;
 
-public class Frame extends JFrame {
+public class Frame extends JPanel {
     private String name;
 
     public Frame(String name) {
-        super(name);
+        super();
         this.name = name;
     }
 

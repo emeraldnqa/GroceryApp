@@ -1,7 +1,6 @@
 package ui.gui;
 
 import model.list.Section;
-import ui.gui.AddItemFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-public class ChooseSectionFrame extends JFrame implements ActionListener {
+public class ChooseSectionPanel extends JPanel implements ActionListener {
     private JRadioButton groceryButton, meatButton, dairyButton, produceButton;
     private GridLayout layout = new GridLayout(5,1);
     private Container pane;
@@ -21,11 +20,10 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
     private Frame frame;
     private List<Section> sections;
 
-    public ChooseSectionFrame(Frame frame, List<Section> sections) {
-        super("Sections Available");
+    public ChooseSectionPanel(Frame frame, List<Section> sections) {
+        super();
         this.frame = frame;
         this.sections = sections;
-        pane = getContentPane();
         groceryButton = new JRadioButton(groceryLabel);
         groceryButton.setMnemonic(KeyEvent.VK_C);
         groceryButton.setActionCommand(groceryLabel);
@@ -47,8 +45,6 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
         groupButton();
         registerListener();
         addToPanel();
-        pack();
-        setResizable(false);
 
     }
 
