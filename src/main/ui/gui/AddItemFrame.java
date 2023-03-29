@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddItemFrame extends Frame implements ActionListener {
+    //TODO: Make the AddItemFrame into a panel, add AddItem Button, add CloseButton
     private JTextField name, brand, amountBought, unit, boughtPrice, year, month, date;
     private JLabel sName, sBrand, sAmountBought, sUnit, sBoughtPrice, sYear, sMonth, sDate;
     private GridLayout layout = new GridLayout(8,2);
@@ -84,30 +85,48 @@ public class AddItemFrame extends Frame implements ActionListener {
         int getYear = Integer.parseInt(year.getText());
         int getDate = Integer.parseInt(date.getText());
         int getMonth = Integer.parseInt(month.getText());
-        switch (sectionName) {
+        switch (chosenSection.getType()) {
             case "Produce":
                 StoreItem produce = new Produce();
                 getFields(produce);
                 produce.setExpiryDate(getYear,getMonth,getDate);
                 chosenSection.addItem(produce);
+                dispose();
+                break;
             case "Grocery":
                 StoreItem grocery = new Grocery();
                 getFields(grocery);
                 grocery.setExpiryDate(getYear,getMonth,getDate);
                 chosenSection.addItem(grocery);
+                dispose();
+                break;
             case "Meat":
                 StoreItem meat = new Meat();
                 getFields(meat);
                 meat.setExpiryDate(getYear, getMonth, getDate);
                 chosenSection.addItem(meat);
+                dispose();
+                break;
             case "Dairy":
                 StoreItem dairy = new Dairy();
                 getFields(dairy);
                 dairy.setExpiryDate(getYear, getMonth, getDate);
                 chosenSection.addItem(dairy);
+                dispose();
+                break;
         }
 
 
+    }
+
+    public StoreItem getLatestItem() {
+        int latestIndex;
+        if (chosenSection.getItems().size() == 0) {
+            latestIndex = 0;
+            return null;
+        }
+        latestIndex = chosenSection.getItems().size() - 1;
+        return chosenSection.getItems().get(latestIndex);
     }
 
     public void getFields(StoreItem item) {

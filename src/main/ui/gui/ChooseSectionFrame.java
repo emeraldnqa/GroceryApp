@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-public class ChooseSectionPanel extends JPanel implements ActionListener {
+public class ChooseSectionFrame extends Frame implements ActionListener {
+    //TODO: Reconsider if we still need ChooseSectionFrame
     private JRadioButton groceryButton, meatButton, dairyButton, produceButton;
     private GridLayout layout = new GridLayout(5,1);
     private Container pane;
@@ -20,14 +21,15 @@ public class ChooseSectionPanel extends JPanel implements ActionListener {
     private Frame frame;
     private List<Section> sections;
 
-    public ChooseSectionPanel(Frame frame, List<Section> sections) {
-        super();
+    public ChooseSectionFrame(Frame frame, List<Section> sections) {
+        super("Choose Section");
         this.frame = frame;
         this.sections = sections;
         groceryButton = new JRadioButton(groceryLabel);
         groceryButton.setMnemonic(KeyEvent.VK_C);
         groceryButton.setActionCommand(groceryLabel);
         groceryButton.setSelected(true);
+        pane = getContentPane();
 
         meatButton = new JRadioButton(meatLabel);
         meatButton.setMnemonic(KeyEvent.VK_C);
@@ -45,6 +47,9 @@ public class ChooseSectionPanel extends JPanel implements ActionListener {
         groupButton();
         registerListener();
         addToPanel();
+        frame.setPreferredSize(new Dimension(100,100));
+        frame.setResizable(false);
+        frame.pack();
 
     }
 
@@ -81,44 +86,45 @@ public class ChooseSectionPanel extends JPanel implements ActionListener {
         if (actionCommand.equals(groceryButton.getActionCommand())) {
             // get Grocery section
             Section grocery = sections.get(3);
-            if (frame.getName().equals("View Section")) {
+            //if (frame.getName().equals("View Section")) {
                 frame = new ViewSection(actionCommand, grocery);
                 frame.setVisible(true);
-            } else if (frame.getName().equals("Create New Item")) {
-                frame = new AddItemFrame(actionCommand,grocery);
-                frame.setVisible(true);
-            }
+//            } else if (frame.getName().equals("Create New Item")) {
+//                frame = new AddItemFrame(actionCommand,grocery);
+//                frame.setVisible(true);
+//            }
         } else if (actionCommand.equals(meatButton.getActionCommand())) {
             // get meat section
             Section meat = sections.get(1);
-            if (frame.getName().equals("View Section")) {
+            //if (frame.getName().equals("View Section")) {
                 frame = new ViewSection(actionCommand, meat);
                 frame.setVisible(true);
-            } else if (frame.getName().equals("Create New Item")) {
-                frame = new AddItemFrame(actionCommand,meat);
-                frame.setVisible(true);
-            }
+//            } else if (frame.getName().equals("Create New Item")) {
+//                frame = new AddItemFrame(actionCommand,meat);
+//                frame.setVisible(true);
+//            }
         } else if (actionCommand.equals(produceButton.getActionCommand())) {
             // get produce section
             Section produces = sections.get(0);
-            if (frame.getName().equals("View Section")) {
+            //if (frame.getName().equals("View Section")) {
                 frame = new ViewSection(actionCommand, produces);
                 frame.setVisible(true);
-            } else if (frame.getName().equals("Create New Item")) {
-                frame = new AddItemFrame(actionCommand,produces);
-                frame.setVisible(true);
-            }
+//            } else if (frame.getName().equals("Create New Item")) {
+//                frame = new AddItemFrame(actionCommand,produces);
+//                frame.setVisible(true);
+//            }
         } else if (actionCommand.equals(dairyButton.getActionCommand())) {
             // get dairy section
             Section dairies = sections.get(2);
-            if (frame.getName().equals("View Section")) {
+            //if (frame.getName().equals("View Section")) {
                 frame = new ViewSection(actionCommand, dairies);
                 frame.setVisible(true);
-            } else if (frame.getName().equals("Create New Item")) {
-                frame = new AddItemFrame(actionCommand,dairies);
-                frame.setVisible(true);
-            }
+//            } else if (frame.getName().equals("Create New Item")) {
+//                frame = new AddItemFrame(actionCommand,dairies);
+//                frame.setVisible(true);
+//            }
         }
 
     }
+
 }

@@ -8,14 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
-public class ViewItemFrame extends JFrame implements ActionListener {
+public class ViewItemPanel extends Frame implements ActionListener {
+    //TODO : Change ViewItemPanel to an Panel
 
     private StoreItem item;
     private JTextArea textArea;
     private JButton closeFrameButton;
     private Container pane;
 
-    public ViewItemFrame(StoreItem item) {
+    public ViewItemPanel(StoreItem item) {
         super("Item details");
         closeFrameButton = new JButton("Close window");
         closeFrameButton.addActionListener(this);

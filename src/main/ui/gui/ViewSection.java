@@ -1,6 +1,5 @@
 package ui.gui;
 
-import model.item.Grocery;
 import model.item.StoreItem;
 import model.list.Section;
 
@@ -15,18 +14,21 @@ public class ViewSection extends Frame implements ListSelectionListener, ActionL
     private JList list;
     private DefaultListModel listModel;
     private DefaultListModel itemNameList;
-    private Container pane;
     private JButton viewItemButton;
+    private JButton addItemButton;
+    private JButton removeItemButton;
     private Section chosenSection;
+    private JScrollPane listScrollPane;
+    private Frame frame;
 
 
 
     public ViewSection(String sectionName, Section chosenSection) {
         super("View Section");
-        setSize(100,200);
-
+        this.chosenSection = chosenSection;
         this.listModel = new DefaultListModel<>();
-        this.itemNameList = new DefaultListModel();
+        this.itemNameList = new DefaultListModel<>();
+
         for (StoreItem item : chosenSection.getItems()) {
             listModel.addElement(item);
             itemNameList.addElement(item.getName());
@@ -34,6 +36,10 @@ public class ViewSection extends Frame implements ListSelectionListener, ActionL
         this.chosenSection = chosenSection;
         viewItemButton = new JButton("View this item");
         viewItemButton.addActionListener(this);
+        addItemButton = new JButton("Add New Item");
+        addItemButton.addActionListener(this);
+        removeItemButton = new JButton("Remove Item");
+        removeItemButton.addActionListener(this);
 
         list = new JList(itemNameList);
         list.toString();
@@ -41,12 +47,30 @@ public class ViewSection extends Frame implements ListSelectionListener, ActionL
         list.setSelectedIndex(0);
         list.setVisibleRowCount(10);
         list.addListSelectionListener(this);
-        pane = getContentPane();
-        pane.setSize(100,200);
-        pane.add(list, BorderLayout.NORTH);
-        pane.add(viewItemButton, BorderLayout.SOUTH);
-        setResizable(false);
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane,
+                BoxLayout.LINE_AXIS));
+        buttonPane.add(viewItemButton);
+        buttonPane.add(addItemButton);
+        buttonPane.add(removeItemButton);
+        listScrollPane = new JScrollPane(list);
+        add(listScrollPane, BorderLayout.CENTER);
+        add(buttonPane, BorderLayout.PAGE_END);
+        setPreferredSize(new Dimension(200,500));
+        pack();
 
+    }
+
+    public JList getJList() {
+        return this.list;
+    }
+
+    public DefaultListModel getListModel() {
+        return this.listModel;
+    }
+
+    public DefaultListModel getItemNameList() {
+        return this.itemNameList;
     }
 
 
@@ -67,10 +91,50 @@ public class ViewSection extends Frame implements ListSelectionListener, ActionL
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        int index = list.getSelectedIndex();
         if (e.getSource() == viewItemButton) {
             StoreItem chosenItem = (StoreItem) listModel.get(list.getSelectedIndex());
-            JFrame viewItemFrame = new ViewItemFrame(chosenItem);
+            JFrame viewItemFrame = new ViewItemPanel(chosenItem);
             viewItemFrame.setVisible(true);
+        } else if (e.getSource() == addItemButton) {
+            AddItemFrame addItemFrame = new AddItemFrame(e.getActionCommand(),chosenSection);
+            addItemFrame.setVisible(true);
+            StoreItem newItem = addItemFrame.getLatestItem();
+
+            if (index == -1) { //no selection, so insert at beginning
+                index = 0;
+            } else {           //add after the selected item
+                index++;
+            }
+
+            listModel.addElement(newItem);
+            itemNameList.addElement(newItem.getName());
+            //If we just wanted to add to the end, we'd do this:
+            //listModel.addElement(employeeName.getText());
+
+
+            //Select the new item and make it visible.
+            list.setSelectedIndex(index);
+            list.ensureIndexIsVisible(index);
+        } else if (e.getSource() == removeItemButton) {
+            listModel.remove(index);
+            itemNameList.remove(index);
+            chosenSection.getItems().remove(index);
+
+            int size = listModel.getSize();
+
+            if (size == 0) { //Nobody's left, disable firing.
+                removeItemButton.setEnabled(false);
+
+            } else { //Select an index.
+                if (index == listModel.getSize()) {
+                    //removed item in last position
+                    index--;
+                }
+
+                list.setSelectedIndex(index);
+                list.ensureIndexIsVisible(index);
+            }
         }
 
     }
