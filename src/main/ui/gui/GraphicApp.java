@@ -6,15 +6,13 @@ import persistance.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+// A graphical stocking management app
 public class GraphicApp implements ActionListener {
 
     // Declare graphic component
@@ -22,17 +20,9 @@ public class GraphicApp implements ActionListener {
     private JMenuItem saveMenu;
     private JMenuItem loadMenu;
     private JMenuItem viewItemMenu;
-    private JMenuItem addItemMenu;
-    //private JMenuItem removeItemMenu;
-    //private JMenuItem sectionMenu;
+    private JMenuItem quitMenu;
     private JMenuBar menuBar;
-    private JPanel viewSectionPanel;
-    private JPanel producePanel;
-    private JPanel meatPanel;
-    private JPanel dairiesPanel;
-    private JPanel groceriesPanel;
-    private CardLayout cl;
-    private JButton addItemButton;
+    private JPanel mainPanel;
     private Frame frame;
     private ChooseSectionFrame sectionFrame;
 
@@ -54,6 +44,8 @@ public class GraphicApp implements ActionListener {
         init();
     }
 
+    // MODIFIES: this
+    // EFFECTS: Declare all the fields, and set the main frame, and main panel
     private void init() {
         // Setup model
         produces = new Section("Produce");
@@ -70,18 +62,13 @@ public class GraphicApp implements ActionListener {
 
         // Set up Graphic component
         mainFrame = new JFrame("Stocking Management App");
-        mainFrame.setLayout(new GridLayout(2,2));
         mainFrame.setPreferredSize(new Dimension(1000,500));
         createMenuBar();
         mainFrame.setJMenuBar(menuBar);
-        //setUpViewSectionPanels();
-        viewSectionPanel = new JPanel();
-        viewSectionPanel.setSize(100,200);
-        mainFrame.add(viewSectionPanel);
 
-
-
-
+        mainPanel = new MainPanel();
+        mainFrame.setContentPane(mainPanel);
+        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         mainFrame.pack();
         mainFrame.setResizable(false);
@@ -89,70 +76,41 @@ public class GraphicApp implements ActionListener {
 
     }
 
-    private void setUpViewSectionPanels() {
-//        cl = new CardLayout();
-//        viewSectionPanel = new JPanel();
-//        viewSectionPanel.setSize(100,200);
-//        viewSectionPanel.setLayout(cl);
-//        produces = sections.get(0);
-//        meats = sections.get(1);
-//        dairies = sections.get(2);
-//        groceries = sections.get(3);
-//        cl.show(viewSectionPanel,"1");
-//        producePanel = new ViewSection("Produce",produces);
-//        //producePanel.setBackground(Color.BLACK);
-//        meatPanel = new ViewSection("Meat",meats);
-//        //meatPanel.setBackground(Color.BLUE);
-//        groceriesPanel = new ViewSection("Grocery",groceries);
-//        dairiesPanel = new ViewSection("Dairy",dairies);
-//        viewSectionPanel.add(producePanel,"Produce");
-//        viewSectionPanel.add(meatPanel,"Meat");
-//        viewSectionPanel.add(groceriesPanel,"Grocery");
-//        viewSectionPanel.add(dairiesPanel,"Dairy");
-
-    }
-
+    // MODIFIES: this
+    // EFFECT: Set up the Menu Bar and its Menu items
     private void createMenuBar() {
         menuBar = new JMenuBar();
-        saveMenu = new JMenuItem("Save");
-        saveMenu.setActionCommand("Save");
-        saveMenu.addActionListener(this);
-        loadMenu = new JMenuItem("Load");
-        loadMenu.setActionCommand("Load");
-        loadMenu.addActionListener(this);
-        viewItemMenu = createMenuItem("Sections");
-        //addItemMenu = createMenuItem("Add Item");
-        //removeItemMenu = createMenuItem("Remove Item");
-        viewItemMenu.addActionListener(this);
-        //addItemMenu.addActionListener(this);
-        //removeItemMenu.addActionListener(this);
-        saveMenu.addActionListener(this);
-        loadMenu.addActionListener(this);
+        saveMenu = createMenuItem("Save");
+
+        loadMenu = createMenuItem("Load");
+
+        viewItemMenu = createMenuItem("Section");
+
+        quitMenu = createMenuItem("Quit");
 
         menuBar.add(viewItemMenu);
-        //menuBar.add(addItemMenu);
-        //menuBar.add(removeItemMenu);
         menuBar.add(saveMenu);
         menuBar.add(loadMenu);
+        menuBar.add(quitMenu);
 
     }
 
-    private JMenuItem createMenuItem(String menuLabel) {
-        JMenuItem menuItem = new JMenuItem(menuLabel);
-        menuItem.setActionCommand(menuLabel);
+
+
+    // MODIFIES: This
+    // EFFECTS: set up menu item
+    private JMenuItem createMenuItem(String label) {
+        JMenuItem menuItem = new JMenuItem(label);
+        menuItem.setActionCommand(label);
+        menuItem.addActionListener(this);
         return menuItem;
     }
 
+    // MODIFIES: this
     // EFFECTS: Load Sections to file
     private List<Section> loadSections() {
         try {
             sections = jsonReader.read();
-            setUpViewSectionPanels();
-//            produces = sections.get(0);
-//            meats = sections.get(1);
-//            dairies = sections.get(2);
-//            groceries = sections.get(3);
-            System.out.println("Loaded Different sections from" + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
@@ -165,38 +123,33 @@ public class GraphicApp implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(sections);
             jsonWriter.close();
-            System.out.println("Saved " + produces.getType() + "to " + JSON_STORE);
+            System.out.println("Saved all sections to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
+
+    // REQUIRES: ActionEvent
+    // MODIFIES: this
+    // EFFECTS: Perform events whenever a button is pressed.
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource() == addItemMenu) {
-//            frame = new Frame("Create New Item");
-//            sectionFrame = new ChooseSectionFrame(frame,sections);
-//            sectionFrame.setVisible(true);
-//        } else if (e.getSource() == removeItemMenu) {
-//            // open remove item frame;
-//            frame = new Frame("Remove Item");
-//            sectionFrame = new ChooseSectionFrame(frame,sections);
-//            sectionFrame.setVisible(true);
-//        } else
-        if (e.getSource() == saveMenu) {
+        Object source = e.getSource();
+        if (source == saveMenu) {
             saveSections();
-        } else if (e.getSource() == loadMenu) {
+            mainPanel.add(new PopUpDialog(mainFrame,"Saved all sections to" + JSON_STORE));
+        } else if (source == loadMenu) {
             sections = loadSections();
-        } else if (e.getSource() == viewItemMenu) {
+            mainPanel.add(new PopUpDialog(mainFrame,"Loaded Different sections from" + JSON_STORE));
+            System.out.println("load");
+        } else if (source == viewItemMenu) {
             frame = new Frame("View Section");
             sectionFrame = new ChooseSectionFrame(frame,sections);
             sectionFrame.setVisible(true);
-
+        } else if (source == quitMenu) {
+            mainFrame.dispose();
+            System.exit(0);
         }
 
     }

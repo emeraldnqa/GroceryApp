@@ -1,26 +1,25 @@
 package ui.gui;
 
-import model.item.StoreItem;
+import model.item.*;
 import model.list.Section;
+import model.list.exception.ItemNotFoundException;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ViewSection extends Frame implements ListSelectionListener, ActionListener {
-    private JList list;
+// Frame to show the items in the section
+public class ViewSection extends Frame implements ActionListener {
+    private JList<Object> list;
     private DefaultListModel listModel;
-    private DefaultListModel itemNameList;
+    private DefaultListModel<Object> itemNameList;
     private JButton viewItemButton;
     private JButton addItemButton;
     private JButton removeItemButton;
     private Section chosenSection;
     private JScrollPane listScrollPane;
-    private Frame frame;
-
+    private JPanel buttonPane = new JPanel();
 
 
     public ViewSection(String sectionName, Section chosenSection) {
@@ -29,113 +28,116 @@ public class ViewSection extends Frame implements ListSelectionListener, ActionL
         this.listModel = new DefaultListModel<>();
         this.itemNameList = new DefaultListModel<>();
 
-        for (StoreItem item : chosenSection.getItems()) {
-            listModel.addElement(item);
-            itemNameList.addElement(item.getName());
-        }
+        addItemToListModel(chosenSection);
         this.chosenSection = chosenSection;
-        viewItemButton = new JButton("View this item");
-        viewItemButton.addActionListener(this);
-        addItemButton = new JButton("Add New Item");
-        addItemButton.addActionListener(this);
-        removeItemButton = new JButton("Remove Item");
-        removeItemButton.addActionListener(this);
+        viewItemButton = createButton("View this item");
+        addItemButton = createButton("Add New Item");
+        removeItemButton = createButton("Remove Item");
 
-        list = new JList(itemNameList);
-        list.toString();
+        list = new JList<Object>(itemNameList);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setSelectedIndex(0);
         list.setVisibleRowCount(10);
-        list.addListSelectionListener(this);
-        JPanel buttonPane = new JPanel();
+
         buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
-        buttonPane.add(viewItemButton);
-        buttonPane.add(addItemButton);
-        buttonPane.add(removeItemButton);
+        addButtonToPane();
         listScrollPane = new JScrollPane(list);
         add(listScrollPane, BorderLayout.CENTER);
         add(buttonPane, BorderLayout.PAGE_END);
-        setPreferredSize(new Dimension(200,500));
+        setPreferredSize(new Dimension(500,500));
+        setResizable(false);
         pack();
 
     }
 
-    public JList getJList() {
-        return this.list;
+    // MODIFIES: this
+    // EFFECT: add element to list model
+    private void addItemToListModel(Section chosenSection) {
+        for (StoreItem item : chosenSection.getItems()) {
+            listModel.addElement(item);
+            itemNameList.addElement(item.getName());
+        }
     }
 
-    public DefaultListModel getListModel() {
-        return this.listModel;
+    // EFFECT: Create new JButton
+    private JButton createButton(String label) {
+        JButton button = new JButton(label);
+        button.addActionListener(this);
+        return button;
     }
 
-    public DefaultListModel getItemNameList() {
-        return this.itemNameList;
+    // MODIFIES: this
+    // EFFECT: add new button to panel
+    private void addButtonToPane() {
+        buttonPane.add(viewItemButton);
+        buttonPane.add(addItemButton);
+        buttonPane.add(removeItemButton);
     }
 
-
-    /**
-     * Called whenever the value of the selection changes.
-     *
-     * @param e the event that characterizes the change.
-     */
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-
-    }
-
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
+    // REQUIRES: ActionEvent
+    // MODIFIES: this
+    // EFFECTS: Perform events whenever a button is pressed.
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = list.getSelectedIndex();
         if (e.getSource() == viewItemButton) {
-            StoreItem chosenItem = (StoreItem) listModel.get(list.getSelectedIndex());
-            JFrame viewItemFrame = new ViewItemPanel(chosenItem);
-            viewItemFrame.setVisible(true);
+            viewItemAction();
         } else if (e.getSource() == addItemButton) {
-            AddItemFrame addItemFrame = new AddItemFrame(e.getActionCommand(),chosenSection);
-            addItemFrame.setVisible(true);
-            StoreItem newItem = addItemFrame.getLatestItem();
+            addItemAction(index);
 
-            if (index == -1) { //no selection, so insert at beginning
-                index = 0;
-            } else {           //add after the selected item
-                index++;
-            }
-
-            listModel.addElement(newItem);
-            itemNameList.addElement(newItem.getName());
-            //If we just wanted to add to the end, we'd do this:
-            //listModel.addElement(employeeName.getText());
-
-
-            //Select the new item and make it visible.
-            list.setSelectedIndex(index);
-            list.ensureIndexIsVisible(index);
         } else if (e.getSource() == removeItemButton) {
-            listModel.remove(index);
-            itemNameList.remove(index);
-            chosenSection.getItems().remove(index);
-
-            int size = listModel.getSize();
-
-            if (size == 0) { //Nobody's left, disable firing.
-                removeItemButton.setEnabled(false);
-
-            } else { //Select an index.
-                if (index == listModel.getSize()) {
-                    //removed item in last position
-                    index--;
-                }
-
-                list.setSelectedIndex(index);
-                list.ensureIndexIsVisible(index);
+            try {
+                removeItemAction(index);
+            } catch (ItemNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
 
+    }
+
+    // REQUIRES: Integer
+    // MODIFIES: This
+    // EFFECTS: remove item from section
+    private void removeItemAction(int index) throws ItemNotFoundException {
+        listModel.remove(index);
+        itemNameList.remove(index);
+        chosenSection.removeItem(index);
+
+        int size = listModel.getSize();
+
+        if (size == 0) {
+            removeItemButton.setEnabled(false);
+
+        } else {
+            if (index == listModel.getSize()) {
+                index--;
+            }
+
+            list.setSelectedIndex(index);
+            list.ensureIndexIsVisible(index);
+        }
+    }
+
+    // REQUIRES: Integer
+    // MODIFIES: This
+    // EFFECTS: add item from section
+    private void addItemAction(int index) {
+        AddItemFrame addItemFrame = new AddItemFrame(chosenSection,
+                listModel, itemNameList, list);
+        addItemFrame.setVisible(true);
+
+
+        list.setSelectedIndex(index);
+        list.ensureIndexIsVisible(index);
+    }
+
+
+    // MODIFIES: This
+    // EFFECTS: view item from section
+    private void viewItemAction() {
+        StoreItem chosenItem = (StoreItem) listModel.get(list.getSelectedIndex());
+        JFrame viewItemFrame = new ViewItemPanel(chosenItem);
+        viewItemFrame.setVisible(true);
     }
 }

@@ -31,7 +31,18 @@
     },
     {
         "Type": "Dairy",
-        "items": []
+        "items": [{
+            "date": 31,
+            "amount": 100,
+            "unit": "kg",
+            "month": 12,
+            "boughtPrice": 50.5,
+            "year": 2023,
+            "price": 0.505,
+            "initialAmount": 100,
+            "name": "cheese",
+            "brand": "no name"
+        }]
     },
     {
         "Type": "Grocery",
