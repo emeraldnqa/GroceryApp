@@ -30,6 +30,19 @@ different classification such as: Produce, CannedFood, Sauce, Vegetables, Dairy,
 and before closing the program
 - As a user, I want to have the option of either start out blank, or load the data that I have saved before.
 
+# Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by open the Section tab in the menu-bar, 
+and choose the section that you would wan to add your Xs into your Y, and click on **Add Item** button, 
+and input information about your new X. When you're done, click on **Add Item** button in the window that you just 
+input your information about your new X
+- You can generate the second required action related to adding Xs to a Y by open the Section tab in the menu-bar,
+and choose the section that you would want to add your Xs into your Y by clicking on Xs-name and click **Remove Item** button
+- You can locate my visual component by clicking on **Load** in the menu-bar or **Save** in the menu bar, 
+where a checkmark-icon appear in a Dialog.
+- You can save the state of my application by clicking the **Save** in the menu-bar
+- You can reload the state of my application by clicking the **Load** in the menu-bar.
+
 ### References:
 - The application UI is based on https://github.students.cs.ubc.ca/CPSC210/TellerApp TellerApp.java in ui package.
 - JsonReader and JsonWriter is based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo JsonReader.java
