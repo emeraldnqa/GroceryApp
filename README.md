@@ -34,6 +34,8 @@ and before closing the program
 - The application UI is based on https://github.students.cs.ubc.ca/CPSC210/TellerApp TellerApp.java in ui package.
 - JsonReader and JsonWriter is based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo JsonReader.java
 and JsonWriter.java in persistence package.
+- Image for Java logo taken from: https://logos-download.com/10695-java-logo-download.html
+- Image for checkmark taken from: https://clipground.com/images/check-logo-8.png
 
 
   
