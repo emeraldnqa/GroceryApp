@@ -1,7 +1,5 @@
 package ui.gui;
 
-import model.Event;
-import model.EventLog;
 import model.list.Section;
 import persistance.JsonReader;
 import persistance.JsonWriter;
@@ -25,6 +23,7 @@ public class GraphicApp implements ActionListener {
     private JMenuItem quitMenu;
     private JMenuBar menuBar;
     private JPanel mainPanel;
+    private Frame frame;
     private ChooseSectionFrame sectionFrame;
 
 
@@ -124,6 +123,7 @@ public class GraphicApp implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(sections);
             jsonWriter.close();
+            System.out.println("Saved all sections to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -142,21 +142,15 @@ public class GraphicApp implements ActionListener {
         } else if (source == loadMenu) {
             sections = loadSections();
             mainPanel.add(new PopUpDialog(mainFrame,"Loaded Different sections from" + JSON_STORE));
+            System.out.println("load");
         } else if (source == viewItemMenu) {
-            sectionFrame = new ChooseSectionFrame("View Section",sections);
+            frame = new Frame("View Section");
+            sectionFrame = new ChooseSectionFrame(frame,sections);
             sectionFrame.setVisible(true);
         } else if (source == quitMenu) {
             mainFrame.dispose();
-            printLog(EventLog.getInstance());
             System.exit(0);
-
         }
 
-    }
-
-    private void printLog(EventLog el) {
-        for (Event next: el) {
-            System.out.println(next.toString());
-        }
     }
 }

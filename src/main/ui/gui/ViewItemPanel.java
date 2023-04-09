@@ -11,6 +11,7 @@ import java.time.LocalDate;
 // A frame that show details information on the item
 public class ViewItemPanel extends Frame implements ActionListener {
 
+    private StoreItem item;
     private JTextArea textArea;
     private JButton closeFrameButton;
     private Container pane;
@@ -19,6 +20,7 @@ public class ViewItemPanel extends Frame implements ActionListener {
         super("Item details");
         closeFrameButton = new JButton("Close window");
         closeFrameButton.addActionListener(this);
+        this.item = item;
         textArea = new JTextArea("Name: " + item.getName() + "\n"
                 + "Stock: " + item.getAmount() + "\n"
                 + "Sale price: " + item.getPrice() + "\n"

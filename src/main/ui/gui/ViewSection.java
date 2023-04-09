@@ -23,7 +23,7 @@ public class ViewSection extends Frame implements ActionListener {
 
 
     public ViewSection(String sectionName, Section chosenSection) {
-        super(sectionName);
+        super("View Section");
         this.chosenSection = chosenSection;
         this.listModel = new DefaultListModel<>();
         this.itemNameList = new DefaultListModel<>();

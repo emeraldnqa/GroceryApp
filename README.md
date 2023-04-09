@@ -31,7 +31,6 @@ and before closing the program
 - As a user, I want to have the option of either start out blank, or load the data that I have saved before.
 
 # Instructions for Grader
-
 - You can generate the first required action related to adding Xs to a Y by open the Section tab in the menu-bar, 
 and choose the section that you would wan to add your Xs into your Y, and click on **Add Item** button, 
 and input information about your new X. When you're done, click on **Add Item** button in the window that you just 
@@ -42,6 +41,35 @@ and choose the section that you would want to add your Xs into your Y by clickin
 where a checkmark-icon appear in a Dialog.
 - You can save the state of my application by clicking the **Save** in the menu-bar
 - You can reload the state of my application by clicking the **Load** in the menu-bar.
+
+# Phase 4: Task 2:
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:apple has been added
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:carrot has been added
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:pork has been added
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:beef has been added
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:Toilet paper has been added
+- Sat Apr 08 19:34:49 PDT 2023:
+   - A new Item:soy sauce has been added
+- Sat Apr 08 19:34:55 PDT 2023: 
+   - A new Item:carrot has been removed
+- Sat Apr 08 19:34:57 PDT 2023:
+   - A new Item:apple has been removed
+- Sat Apr 08 19:35:01 PDT 2023:
+   - A new Item:pork has been removed
+- Sat Apr 08 19:35:02 PDT 2023:
+   - A new Item:beef has been removed
+- Sat Apr 08 19:35:33 PDT 2023:
+   - A new Item:carrots has been added
+- Sat Apr 08 19:36:19 PDT 2023:
+   - A new Item:celery has been added
+- Sat Apr 08 19:37:10 PDT 2023:
+   - A new Item:cabbage has been added
+
 
 ### References:
 - The application UI is based on https://github.students.cs.ubc.ca/CPSC210/TellerApp TellerApp.java in ui package.

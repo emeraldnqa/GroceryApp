@@ -1,8 +1,6 @@
 package model.list;
 
-import model.Event;
-import model.EventLog;
-import model.item.StoreItem;
+import model.item.*;
 import model.list.exception.ItemNotFoundException;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,7 +52,6 @@ public class Section implements Writable {
     public List<StoreItem> addItem(StoreItem newItem) {
         items.add(newItem);
         this.numOfItem++;
-        EventLog.getInstance().logEvent(new Event("A new Item:" + newItem.getName() + " has been added"));
         return items;
     }
 
@@ -71,8 +68,6 @@ public class Section implements Writable {
             StoreItem itemToRemove = items.get(itemNo);
             items.remove(itemToRemove);
             numOfItem--;
-            EventLog.getInstance().logEvent(new Event("A new Item:" + itemToRemove.getName()
-                    + " has been removed"));
         }
         return items;
     }

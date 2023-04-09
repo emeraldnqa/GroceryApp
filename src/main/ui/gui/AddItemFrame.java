@@ -30,6 +30,7 @@ public class AddItemFrame extends Frame implements ActionListener {
     private Container pane;
     private JButton addItemButton;
     private Section chosenSection;
+    private StoreItem newItem = null;
     private DefaultListModel listModel;
     private DefaultListModel itemNameList;
     private JList list;
@@ -158,6 +159,7 @@ public class AddItemFrame extends Frame implements ActionListener {
         getFields(item);
         item.setExpiryDate(getYear, getMonth, getDate);
         chosenSection.addItem(item);
+        newItem = item;
         listModel.addElement(item);
         itemNameList.addElement(item.getName());
         setVisible(false);

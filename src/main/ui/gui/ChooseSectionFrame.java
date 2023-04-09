@@ -10,7 +10,8 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 // A Frame that allow use to choose which section that they would operate on
-public class ChooseSectionFrame extends JFrame implements ActionListener {
+public class ChooseSectionFrame extends Frame implements ActionListener {
+    //TODO: Reconsider if we still need ChooseSectionFrame
     private JRadioButton groceryButton;
     private JRadioButton meatButton;
     private JRadioButton dairyButton;
@@ -24,8 +25,9 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
     private Frame frame;
     private List<Section> sections;
 
-    public ChooseSectionFrame(String frameName, List<Section> sections) {
-        super(frameName);
+    public ChooseSectionFrame(Frame frame, List<Section> sections) {
+        super("Choose Section");
+        this.frame = frame;
         this.sections = sections;
 
         groceryButton = createRadioButton(GROCERY_LABEL);
@@ -96,22 +98,22 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
         String actionCommand = e.getActionCommand();
         if (actionCommand.equals(groceryButton.getActionCommand())) {
             Section grocery = sections.get(3);
-            this.frame = new ViewSection(actionCommand, grocery);
+            frame = new ViewSection(actionCommand, grocery);
             frame.setVisible(true);
 
         } else if (actionCommand.equals(meatButton.getActionCommand())) {
             Section meat = sections.get(1);
-            this.frame = new ViewSection(actionCommand, meat);
+            frame = new ViewSection(actionCommand, meat);
             frame.setVisible(true);
 
         } else if (actionCommand.equals(produceButton.getActionCommand())) {
             Section produces = sections.get(0);
-            this.frame = new ViewSection(actionCommand, produces);
+            frame = new ViewSection(actionCommand, produces);
             frame.setVisible(true);
 
         } else if (actionCommand.equals(dairyButton.getActionCommand())) {
             Section dairies = sections.get(2);
-            this.frame = new ViewSection(actionCommand, dairies);
+            frame = new ViewSection(actionCommand, dairies);
             frame.setVisible(true);
         }
 
