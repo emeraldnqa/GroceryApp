@@ -1,44 +1,7 @@
 {"Sections": [
     {
         "Type": "Produce",
-        "items": [
-            {
-                "date": 31,
-                "amount": 100,
-                "unit": "lb",
-                "month": 12,
-                "boughtPrice": 50.5,
-                "year": 999999999,
-                "price": 0.505,
-                "initialAmount": 100,
-                "name": "carrots",
-                "brand": "no name"
-            },
-            {
-                "date": 31,
-                "amount": 45,
-                "unit": "lb",
-                "month": 12,
-                "boughtPrice": 45.5,
-                "year": 999999999,
-                "price": 1.011111111111111,
-                "initialAmount": 45,
-                "name": "celery",
-                "brand": "no name"
-            },
-            {
-                "date": 31,
-                "amount": 20,
-                "unit": "kg",
-                "month": 12,
-                "boughtPrice": 120.2,
-                "year": 999999999,
-                "price": 6.01,
-                "initialAmount": 20,
-                "name": "cabbage",
-                "brand": "farm boy"
-            }
-        ]
+        "items": []
     },
     {
         "Type": "Meat",
@@ -50,31 +13,17 @@
     },
     {
         "Type": "Grocery",
-        "items": [
-            {
-                "date": 31,
-                "amount": 100,
-                "unit": "roll",
-                "month": 12,
-                "boughtPrice": 120.5,
-                "year": 999999999,
-                "price": 1.205,
-                "initialAmount": 100,
-                "name": "Toilet paper",
-                "brand": "purex"
-            },
-            {
-                "date": 31,
-                "amount": 20,
-                "unit": "bottle",
-                "month": 12,
-                "boughtPrice": 120.2,
-                "year": 999999999,
-                "price": 6.01,
-                "initialAmount": 20,
-                "name": "soy sauce",
-                "brand": "kikkoman"
-            }
-        ]
+        "items": [{
+            "date": 31,
+            "amount": 100,
+            "unit": "roll",
+            "month": 12,
+            "boughtPrice": 100,
+            "year": 999999999,
+            "price": 1,
+            "initialAmount": 100,
+            "name": "toilet paper",
+            "brand": "purex"
+        }]
     }
 ]}

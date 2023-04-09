@@ -70,6 +70,14 @@ where a checkmark-icon appear in a Dialog.
 - Sat Apr 08 19:37:10 PDT 2023:
    - A new Item:cabbage has been added
 
+If user decided not to load:
+- Sat Apr 08 20:43:54 PDT 2023
+   - A new Item:meat has been added
+- Sat Apr 08 20:44:18 PDT 2023
+   - A new Item:toilet paper has been added
+- Sat Apr 08 20:44:24 PDT 2023
+   - A new Item:meat has been removed
+
 
 ### References:
 - The application UI is based on https://github.students.cs.ubc.ca/CPSC210/TellerApp TellerApp.java in ui package.
