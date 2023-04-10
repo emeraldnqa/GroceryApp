@@ -52,17 +52,17 @@ public class MainPanel extends JPanel {
         g2d.setFont(new Font("Arial",Font.PLAIN,12));
         g2d.setColor(Color.BLACK);
 
-        generateInstructions(g2d, firstline, secondline, thirdline, fourthline, fifthline, sixthline, seventhline, eighthline,
-                ninthline, tenthline, eleventhline, twefthline, thirteenthline, fourteenthline);
+        generateInstructions(g2d, firstline, secondline, thirdline, fourthline, fifthline, sixthline, seventhline,
+                eighthline, ninthline, tenthline, eleventhline, twefthline, thirteenthline, fourteenthline);
 
     }
 
 
     // EFFECTS: create String
-    private void generateInstructions(Graphics2D g2d, String firstline, String secondline, String thirdline, String fourthline,
-                                      String fifthline, String sixthline, String seventhline, String eighthline,
-                                      String ninthline, String tenthline, String eleventhline, String twefthline,
-                                      String thirteenthline, String fourteenthline) {
+    private void generateInstructions(Graphics2D g2d, String firstline, String secondline, String thirdline,
+                                      String fourthline, String fifthline, String sixthline, String seventhline,
+                                      String eighthline, String ninthline, String tenthline, String eleventhline,
+                                      String twefthline, String thirteenthline, String fourteenthline) {
         drawDotpointsBeforeInstructions(g2d, firstline,155,112,165,118);
 
         drawDotpointsBeforeInstructions(g2d, secondline,180,140,190,145);
@@ -106,7 +106,8 @@ public class MainPanel extends JPanel {
     }
 
     // EFFECTS: Create String
-    private void drawDotpointsBeforeInstructions(Graphics2D g2d, String line, int shapeX, int shapeY, int stringX, int stringY) {
+    private void drawDotpointsBeforeInstructions(Graphics2D g2d, String line, int shapeX, int shapeY, int stringX, int
+            stringY) {
         g2d.fillOval(shapeX,shapeY,5,5);
         g2d.drawString(line,stringX,stringY);
     }
