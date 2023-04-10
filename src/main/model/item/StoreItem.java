@@ -26,7 +26,6 @@ public abstract class StoreItem implements Writable {
 
     }
 
-    // EFFECTS:
     public String setName(String name) {
         return this.name = name;
     }
@@ -123,6 +122,7 @@ public abstract class StoreItem implements Writable {
     }
 
 
+    // EFFECTS: Parse the StoreItem Object into a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name",name);

@@ -35,6 +35,9 @@ public class AddItemFrame extends Frame implements ActionListener {
     private JList list;
     private JPanel panel;
 
+
+    // EFFECTS: Construct a new frame that user can add information about the new item, with given Section, listModel,
+    // itemNameList
     public AddItemFrame(Section chosenSection, DefaultListModel listModel, DefaultListModel itemNameList,
                         JList list) {
         super("Create New Item");

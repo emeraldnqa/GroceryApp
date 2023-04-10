@@ -24,6 +24,7 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
     private Frame frame;
     private List<Section> sections;
 
+    // Construct a frame to choose section to operate on with given frame name, and section
     public ChooseSectionFrame(String frameName, List<Section> sections) {
         super(frameName);
         this.sections = sections;
@@ -50,6 +51,9 @@ public class ChooseSectionFrame extends JFrame implements ActionListener {
 
     }
 
+    // REQUIRES: String not empty
+    // MODIFIES: this
+    // EFFECTS: Create RadioButton
     private JRadioButton createRadioButton(String label) {
         JRadioButton radioButton = new JRadioButton(label);
         radioButton.setMnemonic(KeyEvent.VK_C);

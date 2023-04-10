@@ -79,7 +79,20 @@ If user decided not to load:
 - Sat Apr 08 20:44:24 PDT 2023
    - A new Item:meat has been removed
 
+# Phase 4: Task 3:
+- While I learned a lot from this project, and I was satisfied with its outcome, there are some structural change I would like to make to the project:
+   - Looking at the UML Diagram, we can see that there are an abstract class called StoreItem which are implemented by
+four other concrete subclasses. While it wasn't shown in the UML Diagram, I found that there is low cohesion in the StoreItem,
+as it has to manage many things within its own class such as expiry date, and price management, stock, etc. These fields and 
+methods relating to these fields can be its own class, and the StoreItem abstract class can set those new class as fields.
+In addition, I would also like to create the StoreItem as its own concrete class, and other subclasses such as Dairy, Grocery, or Meat
+can still extend it but it doesn't have to use the abstract methods within the class, but can override any method if needed. This allows
+the flexibility with methods that have the same name with its supertype that was lacking in the project. 
 
+   - I would also like to improve the cohesion in my GraphicApp Class and other Class that extends JFrame as well. 
+  While I already had a class for each Frame, I think that there can be classes for buttons, and menu-bar, especially for each frame. 
+  This will improve cohesion for each frame, where its sole responsibility is to display the elements that was added to its frame. 
+  That's why in my UML Diagram, most of the class for GUI are related to Frame and Panel, rather than element such as button or menu bar
 ### References:
 - The application UI is based on https://github.students.cs.ubc.ca/CPSC210/TellerApp TellerApp.java in ui package.
 - JsonReader and JsonWriter is based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo JsonReader.java

@@ -3,10 +3,13 @@ package ui.gui;
 import javax.swing.*;
 import java.awt.*;
 
+// Represent a popup dialog whenever user save, load, remove, or add item action is successful
 public class PopUpDialog extends JOptionPane {
     private JFrame frame;
     private String message;
 
+    // EFFECTS: Construct a popup dialog whenever an action relating to StoreItem and Section perform successfully,
+    // with given frame, and message
     public PopUpDialog(JFrame frame, String message) {
         super();
         this.frame = frame;

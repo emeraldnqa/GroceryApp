@@ -22,6 +22,8 @@ public class ViewSection extends Frame implements ActionListener {
     private JPanel buttonPane = new JPanel();
 
 
+    // EFFECTS: Construct a frame that show all the items name in the given section, a
+    // long with buttons to operate on the items in the given section. It's given the section name.
     public ViewSection(String sectionName, Section chosenSection) {
         super(sectionName);
         this.chosenSection = chosenSection;
@@ -77,7 +79,7 @@ public class ViewSection extends Frame implements ActionListener {
 
     // REQUIRES: ActionEvent
     // MODIFIES: this
-    // EFFECTS: Perform events whenever a button is pressed.
+    // EFFECTS: Add, remove or view item when one of the three button on the frame is pressed.
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = list.getSelectedIndex();

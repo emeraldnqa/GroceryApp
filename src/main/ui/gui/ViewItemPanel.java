@@ -15,8 +15,10 @@ public class ViewItemPanel extends Frame implements ActionListener {
     private JButton closeFrameButton;
     private Container pane;
 
+    // EFFECT: Construct a frame that show detail information of the given item
     public ViewItemPanel(StoreItem item) {
         super("Item details");
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         closeFrameButton = new JButton("Close window");
         closeFrameButton.addActionListener(this);
         textArea = new JTextArea("Name: " + item.getName() + "\n"
@@ -39,7 +41,7 @@ public class ViewItemPanel extends Frame implements ActionListener {
 
     // REQUIRES: ActionEvent
     // MODIFIES: this
-    // EFFECTS: Perform events whenever a button is pressed.
+    // EFFECTS: Dispose the frame when "Close" Button is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         dispose();

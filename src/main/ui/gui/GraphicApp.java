@@ -41,6 +41,7 @@ public class GraphicApp implements ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/sections.json";
 
+    // EFFECTS: Construct a frame containing all the menus of sections, save, load and quit button
     public GraphicApp() {
         init();
     }
@@ -154,6 +155,9 @@ public class GraphicApp implements ActionListener {
 
     }
 
+    // REQUIRES: EventLog not null
+    // MODIFIES: this
+    // EFFECTS: Print out all the time when user decide to add Item or remove item from the list
     private void printLog(EventLog el) {
         for (Event next: el) {
             System.out.println(next.toString());
