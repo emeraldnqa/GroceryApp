@@ -43,6 +43,7 @@ where a checkmark-icon appear in a Dialog.
 - You can reload the state of my application by clicking the **Load** in the menu-bar.
 
 # Phase 4: Task 2:
+If user decide to load the data:
 - Sat Apr 08 19:34:49 PDT 2023:
    - A new Item:apple has been added
 - Sat Apr 08 19:34:49 PDT 2023:
