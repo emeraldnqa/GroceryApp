@@ -44,40 +44,61 @@ where a checkmark-icon appear in a Dialog.
 
 # Phase 4: Task 2:
 If user decide to load the data:
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:apple has been added
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:carrot has been added
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:pork has been added
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:beef has been added
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:Toilet paper has been added
-- Sat Apr 08 19:34:49 PDT 2023:
-   - A new Item:soy sauce has been added
-- Sat Apr 08 19:34:55 PDT 2023: 
-   - A new Item:carrot has been removed
-- Sat Apr 08 19:34:57 PDT 2023:
-   - A new Item:apple has been removed
-- Sat Apr 08 19:35:01 PDT 2023:
-   - A new Item:pork has been removed
-- Sat Apr 08 19:35:02 PDT 2023:
-   - A new Item:beef has been removed
-- Sat Apr 08 19:35:33 PDT 2023:
-   - A new Item:carrots has been added
-- Sat Apr 08 19:36:19 PDT 2023:
-   - A new Item:celery has been added
-- Sat Apr 08 19:37:10 PDT 2023:
-   - A new Item:cabbage has been added
+- Wed Apr 12 12:14:38 PDT 2023:
+  - A new Item: cauliflower has been added to Produce
+- Wed Apr 12 12:14:38 PDT 2023:
+  - A new Item: pork has been added to Meat
+- Wed Apr 12 12:14:38 PDT 2023:
+  - A new Item: beef has been added to Meat
+- Wed Apr 12 12:14:38 PDT 2023:
+  - A new Item: cheddar has been added to Dairy
+- Wed Apr 12 12:14:38 PDT 2023:
+  - A new Item: toilet paper has been added to Grocery
+- Wed Apr 12 12:15:08 PDT 2023:
+  - A new Item: apple has been added to Produce
+- Wed Apr 12 12:15:29 PDT 2023:
+  - A new Item: banana has been added to Produce
+- Wed Apr 12 12:16:04 PDT 2023:
+  - A new Item: oat milk has been added to Dairy
+- Wed Apr 12 12:16:34 PDT 2023:
+  - A new Item: 2% milk has been added to Dairy
+- Wed Apr 12 12:17:08 PDT 2023:
+  - A new Item: chicken thigh has been added to Meat
+- Wed Apr 12 12:17:58 PDT 2023:
+  - A new Item: salt has been added to Grocery
+- Wed Apr 12 12:18:09 PDT 2023:
+  - An Item: beef has been removed from Meat
+- Wed Apr 12 12:18:14 PDT 2023:
+  - An Item: oat milk has been removed from Dairy
+
 
 If user decided not to load:
-- Sat Apr 08 20:43:54 PDT 2023
-   - A new Item:meat has been added
-- Sat Apr 08 20:44:18 PDT 2023
-   - A new Item:toilet paper has been added
-- Sat Apr 08 20:44:24 PDT 2023
-   - A new Item:meat has been removed
+- Wed Apr 12 12:06:47 PDT 2023:
+   - A new Item: lettuce has been added to Produce
+- Wed Apr 12 12:07:33 PDT 2023:
+   - A new Item: cauliflower has been added to Produce
+- Wed Apr 12 12:08:25 PDT 2023:
+   - A new Item: dish soap has been added to Grocery
+- Wed Apr 12 12:09:02 PDT 2023:
+   - A new Item: toilet paper has been added to Grocery
+- Wed Apr 12 12:09:38 PDT 2023:
+   - A new Item: pork has been added to Meat
+- Wed Apr 12 12:10:08 PDT 2023:
+   - A new Item: beef has been added to Meat
+- Wed Apr 12 12:10:32 PDT 2023:
+   - A new Item: meat has been added to Meat
+- Wed Apr 12 12:11:06 PDT 2023:
+   - A new Item: cheddar has been added to Dairy
+- Wed Apr 12 12:11:36 PDT 2023:
+   - A new Item: feta has been added to Dairy
+- Wed Apr 12 12:11:43 PDT 2023:
+   - A new Item: meat has been removed from Meat
+- Wed Apr 12 12:11:49 PDT 2023:
+   - An Item: dish soap has been removed from Grocery
+- Wed Apr 12 12:11:56 PDT 2023:
+   - An Item: lettuce has been removed from Produce
+- Wed Apr 12 12:12:06 PDT 2023:
+   - An Item: feta has been removed from Dairy
 
 # Phase 4: Task 3:
 - While I learned a lot from this project, and I was satisfied with its outcome, there are some structural change I would like to make to the project:

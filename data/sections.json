@@ -1,27 +1,74 @@
 {"Sections": [
     {
         "Type": "Produce",
-        "items": []
+        "items": [{
+            "date": 31,
+            "amount": 150,
+            "unit": "head",
+            "month": 12,
+            "boughtPrice": 100,
+            "year": 999999999,
+            "price": 0.6666666666666666,
+            "initialAmount": 150,
+            "name": "cauliflower",
+            "brand": "western family"
+        }]
     },
     {
         "Type": "Meat",
-        "items": []
+        "items": [
+            {
+                "date": 31,
+                "amount": 100,
+                "unit": "kg",
+                "month": 12,
+                "boughtPrice": 50,
+                "year": 2023,
+                "price": 0.5,
+                "initialAmount": 100,
+                "name": "pork",
+                "brand": "no name"
+            },
+            {
+                "date": 21,
+                "amount": 120,
+                "unit": "kg",
+                "month": 12,
+                "boughtPrice": 130,
+                "year": 2023,
+                "price": 1.0833333333333333,
+                "initialAmount": 120,
+                "name": "beef",
+                "brand": "no name"
+            }
+        ]
     },
     {
         "Type": "Dairy",
-        "items": []
+        "items": [{
+            "date": 21,
+            "amount": 100,
+            "unit": "block",
+            "month": 12,
+            "boughtPrice": 1100,
+            "year": 2023,
+            "price": 11,
+            "initialAmount": 100,
+            "name": "cheddar",
+            "brand": "no name"
+        }]
     },
     {
         "Type": "Grocery",
         "items": [{
             "date": 31,
-            "amount": 100,
-            "unit": "roll",
+            "amount": 129023,
+            "unit": "rolls",
             "month": 12,
-            "boughtPrice": 100,
+            "boughtPrice": 10923,
             "year": 999999999,
-            "price": 1,
-            "initialAmount": 100,
+            "price": 0.084659324306519,
+            "initialAmount": 129023,
             "name": "toilet paper",
             "brand": "purex"
         }]

@@ -23,7 +23,7 @@ public class ViewItemPanel extends Frame implements ActionListener {
         closeFrameButton.addActionListener(this);
         textArea = new JTextArea("Name: " + item.getName() + "\n"
                 + "Stock: " + item.getAmount() + "\n"
-                + "Sale price: " + item.getPrice() + "\n"
+                + "Sale price: " + item.getPrice() + " per " + item.getUnit() + "\n"
                 + "Expiry date: " + toString(item.getExpiryDate()));
         textArea.setEditable(false);
         pane = getContentPane();
