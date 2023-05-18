@@ -1,18 +1,32 @@
 {"Sections": [
     {
         "Type": "Produce",
-        "items": [{
-            "date": 31,
-            "amount": 150,
-            "unit": "head",
-            "month": 12,
-            "boughtPrice": 100,
-            "year": 999999999,
-            "price": 0.6666666666666666,
-            "initialAmount": 150,
-            "name": "cauliflower",
-            "brand": "western family"
-        }]
+        "items": [
+            {
+                "date": 31,
+                "amount": 150,
+                "unit": "head",
+                "month": 12,
+                "boughtPrice": 100,
+                "year": 999999999,
+                "price": 0.6666666666666666,
+                "initialAmount": 150,
+                "name": "cauliflower",
+                "brand": "western family"
+            },
+            {
+                "date": 31,
+                "amount": 100,
+                "unit": "klsjd",
+                "month": 12,
+                "boughtPrice": 10.1,
+                "year": 999999999,
+                "price": 0.10099999999999999,
+                "initialAmount": 100,
+                "name": "alihdl",
+                "brand": ";ls;led;lk"
+            }
+        ]
     },
     {
         "Type": "Meat",
@@ -30,16 +44,16 @@
                 "brand": "no name"
             },
             {
-                "date": 21,
-                "amount": 120,
-                "unit": "kg",
+                "date": 31,
+                "amount": 100,
+                "unit": "lkasjd",
                 "month": 12,
-                "boughtPrice": 130,
-                "year": 2023,
-                "price": 1.0833333333333333,
-                "initialAmount": 120,
-                "name": "beef",
-                "brand": "no name"
+                "boughtPrice": 121,
+                "year": 2022,
+                "price": 1.21,
+                "initialAmount": 100,
+                "name": "lsjdfs",
+                "brand": "sl;jd;"
             }
         ]
     },
